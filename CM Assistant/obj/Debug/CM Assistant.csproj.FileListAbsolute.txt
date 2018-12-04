@@ -1,0 +1,22 @@
+C:\Users\12richards.sa\source\repos\CM Assistant\CM Assistant\bin\Debug\CM Assistant.exe.config
+C:\Users\12richards.sa\source\repos\CM Assistant\CM Assistant\bin\Debug\CM Assistant.exe
+C:\Users\12richards.sa\source\repos\CM Assistant\CM Assistant\bin\Debug\CM Assistant.pdb
+C:\Users\12richards.sa\source\repos\CM Assistant\CM Assistant\bin\Debug\OxyPlot.dll
+C:\Users\12richards.sa\source\repos\CM Assistant\CM Assistant\bin\Debug\OxyPlot.Wpf.dll
+C:\Users\12richards.sa\source\repos\CM Assistant\CM Assistant\bin\Debug\OxyPlot.pdb
+C:\Users\12richards.sa\source\repos\CM Assistant\CM Assistant\bin\Debug\OxyPlot.xml
+C:\Users\12richards.sa\source\repos\CM Assistant\CM Assistant\bin\Debug\OxyPlot.Wpf.pdb
+C:\Users\12richards.sa\source\repos\CM Assistant\CM Assistant\bin\Debug\OxyPlot.Wpf.xml
+C:\Users\12richards.sa\source\repos\CM Assistant\CM Assistant\obj\Debug\CM Assistant.csprojAssemblyReference.cache
+C:\Users\12richards.sa\source\repos\CM Assistant\CM Assistant\obj\Debug\MainWindow.g.cs
+C:\Users\12richards.sa\source\repos\CM Assistant\CM Assistant\obj\Debug\App.g.cs
+C:\Users\12richards.sa\source\repos\CM Assistant\CM Assistant\obj\Debug\CM Assistant_MarkupCompile.cache
+C:\Users\12richards.sa\source\repos\CM Assistant\CM Assistant\obj\Debug\CM Assistant_MarkupCompile.lref
+C:\Users\12richards.sa\source\repos\CM Assistant\CM Assistant\obj\Debug\MainWindow.baml
+C:\Users\12richards.sa\source\repos\CM Assistant\CM Assistant\obj\Debug\CM Assistant.g.resources
+C:\Users\12richards.sa\source\repos\CM Assistant\CM Assistant\obj\Debug\CM_Assistant.Properties.Resources.resources
+C:\Users\12richards.sa\source\repos\CM Assistant\CM Assistant\obj\Debug\CM Assistant.csproj.GenerateResource.cache
+C:\Users\12richards.sa\source\repos\CM Assistant\CM Assistant\obj\Debug\CM Assistant.csproj.CoreCompileInputs.cache
+C:\Users\12richards.sa\source\repos\CM Assistant\CM Assistant\obj\Debug\CM Assistant.csproj.CopyComplete
+C:\Users\12richards.sa\source\repos\CM Assistant\CM Assistant\obj\Debug\CM Assistant.exe
+C:\Users\12richards.sa\source\repos\CM Assistant\CM Assistant\obj\Debug\CM Assistant.pdb
