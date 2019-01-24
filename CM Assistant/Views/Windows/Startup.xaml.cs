@@ -14,18 +14,18 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using OxyPlot;
 using OxyPlot.Series;
+using SourceChord.FluentWPF;
 
 namespace CM_Assistant
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow
     {
         public MainWindow()
         {
             InitializeComponent();
-           
         }
     }
 }

@@ -20,3 +20,27 @@ C:\Users\12richards.sa\source\repos\CM Assistant\CM Assistant\obj\Debug\CM Assis
 C:\Users\12richards.sa\source\repos\CM Assistant\CM Assistant\obj\Debug\CM Assistant.csproj.CopyComplete
 C:\Users\12richards.sa\source\repos\CM Assistant\CM Assistant\obj\Debug\CM Assistant.exe
 C:\Users\12richards.sa\source\repos\CM Assistant\CM Assistant\obj\Debug\CM Assistant.pdb
+C:\Users\samir\Source\Repos\CM-Assistant\CM Assistant\bin\Debug\CM Assistant.exe.config
+C:\Users\samir\Source\Repos\CM-Assistant\CM Assistant\bin\Debug\CM Assistant.exe
+C:\Users\samir\Source\Repos\CM-Assistant\CM Assistant\bin\Debug\CM Assistant.pdb
+C:\Users\samir\Source\Repos\CM-Assistant\CM Assistant\bin\Debug\FluentWPF.dll
+C:\Users\samir\Source\Repos\CM-Assistant\CM Assistant\bin\Debug\OxyPlot.dll
+C:\Users\samir\Source\Repos\CM-Assistant\CM Assistant\bin\Debug\OxyPlot.Wpf.dll
+C:\Users\samir\Source\Repos\CM-Assistant\CM Assistant\bin\Debug\OxyPlot.pdb
+C:\Users\samir\Source\Repos\CM-Assistant\CM Assistant\bin\Debug\OxyPlot.xml
+C:\Users\samir\Source\Repos\CM-Assistant\CM Assistant\bin\Debug\OxyPlot.Wpf.pdb
+C:\Users\samir\Source\Repos\CM-Assistant\CM Assistant\bin\Debug\OxyPlot.Wpf.xml
+C:\Users\samir\Source\Repos\CM-Assistant\CM Assistant\obj\Debug\CM Assistant.csprojAssemblyReference.cache
+C:\Users\samir\Source\Repos\CM-Assistant\CM Assistant\obj\Debug\App.g.cs
+C:\Users\samir\Source\Repos\CM-Assistant\CM Assistant\obj\Debug\CM Assistant_MarkupCompile.cache
+C:\Users\samir\Source\Repos\CM-Assistant\CM Assistant\obj\Debug\CM Assistant_MarkupCompile.lref
+C:\Users\samir\Source\Repos\CM-Assistant\CM Assistant\obj\Debug\App.baml
+C:\Users\samir\Source\Repos\CM-Assistant\CM Assistant\obj\Debug\CM Assistant.g.resources
+C:\Users\samir\Source\Repos\CM-Assistant\CM Assistant\obj\Debug\CM_Assistant.Properties.Resources.resources
+C:\Users\samir\Source\Repos\CM-Assistant\CM Assistant\obj\Debug\CM Assistant.csproj.GenerateResource.cache
+C:\Users\samir\Source\Repos\CM-Assistant\CM Assistant\obj\Debug\CM Assistant.csproj.CoreCompileInputs.cache
+C:\Users\samir\Source\Repos\CM-Assistant\CM Assistant\obj\Debug\CM Assistant.csproj.CopyComplete
+C:\Users\samir\Source\Repos\CM-Assistant\CM Assistant\obj\Debug\CM Assistant.exe
+C:\Users\samir\Source\Repos\CM-Assistant\CM Assistant\obj\Debug\CM Assistant.pdb
+C:\Users\samir\Source\Repos\CM-Assistant\CM Assistant\obj\Debug\Views\Windows\Startup.g.cs
+C:\Users\samir\Source\Repos\CM-Assistant\CM Assistant\obj\Debug\Views\Windows\Startup.baml
