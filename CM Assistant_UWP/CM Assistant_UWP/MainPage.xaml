@@ -21,22 +21,27 @@
                     <SymbolIcon Symbol="Home"/>
                 </NavigationViewItem.Icon>
             </NavigationViewItem>
-            <NavigationViewItem Content="Times">
+            <NavigationViewItem Content="Times" Tag="Times">
                 <NavigationViewItem.Icon>
                     <SymbolIcon Symbol="CalendarWeek"/>
                 </NavigationViewItem.Icon>
             </NavigationViewItem>
-            <NavigationViewItem Content="Clients">
+            <NavigationViewItem Content="Clients" Tag="Clients">
                 <NavigationViewItem.Icon>
                     <SymbolIcon Symbol="Contact"/>
                 </NavigationViewItem.Icon>
             </NavigationViewItem>
-            <NavigationViewItem Content="Children">
+            <NavigationViewItem Content="Children" Tag="Children">
                 <NavigationViewItem.Icon>
                     <SymbolIcon Symbol="ContactInfo"/>
                 </NavigationViewItem.Icon>
             </NavigationViewItem>
+            <NavigationViewItem Content="Income/Outgoings" Tag="Proceeds">
+                <NavigationViewItem.Icon>
+                    <FontIcon FontFamily="SegoeUI" Glyph="&#xA3;"/>
+                </NavigationViewItem.Icon>
+            </NavigationViewItem>
         </NavigationView.MenuItems>
-        <Frame Margin="8" x:Name="Frm_ContentFrame"/>
+        <Frame x:Name="Frm_ContentFrame"/>
     </NavigationView>
 </Page>

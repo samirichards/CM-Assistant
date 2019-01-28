@@ -1,15 +1,14 @@
 ﻿<Page
-    x:Class="CM_Assistant_UWP.Pages.Home"
+    x:Class="CM_Assistant_UWP.Pages.Register"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CM_Assistant_UWP.Pages"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <TextBlock Text="This is a test"/>
+        <TextBlock Text="Attendance Page"/>
     </Grid>
 </Page>
-
-<!--    Background="{StaticResource SystemControlAcrylicWindowMediumHighBrush}" -->

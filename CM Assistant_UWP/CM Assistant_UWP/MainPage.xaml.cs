@@ -50,6 +50,18 @@ namespace CM_Assistant_UWP
                 case "Home":
                     Frm_ContentFrame.Navigate(typeof(Pages.Home));
                     break;
+                case "Times":
+                    Frm_ContentFrame.Navigate(typeof(Pages.Calendar));
+                    break;
+                case "Clients":
+                    Frm_ContentFrame.Navigate(typeof(Pages.Clients));
+                    break;
+                case "Children":
+                    Frm_ContentFrame.Navigate(typeof(Pages.Register));
+                    break;
+                case "Income/Outgoings":
+                    Frm_ContentFrame.Navigate(typeof(Pages.Proceeds));
+                    break;
             }
         }
 
@@ -64,6 +76,18 @@ namespace CM_Assistant_UWP
             {
                 case "Home":
                     Frm_ContentFrame.Navigate(typeof(Pages.Home));
+                    break;
+                case "Times":
+                    Frm_ContentFrame.Navigate(typeof(Pages.Calendar));
+                    break;
+                case "Clients":
+                    Frm_ContentFrame.Navigate(typeof(Pages.Clients));
+                    break;
+                case "Children":
+                    Frm_ContentFrame.Navigate(typeof(Pages.Register));
+                    break;
+                case "Proceeds":
+                    Frm_ContentFrame.Navigate(typeof(Pages.Proceeds));
                     break;
             }
         }

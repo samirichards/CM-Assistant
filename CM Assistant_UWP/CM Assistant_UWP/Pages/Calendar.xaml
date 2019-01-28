@@ -1,0 +1,20 @@
+﻿<Page
+    x:Class="CM_Assistant_UWP.Pages.Calendar"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CM_Assistant_UWP.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:oxy="using:OxyPlot.Windows"
+    xmlns:local1="using:CM_Assistant_UWP.Classes.Viewmodels"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.DataContext>
+        <local1:TestPlotViewModel/>
+    </Page.DataContext>
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <oxy:PlotView Model="{Binding PlotModel}"/>
+    </Grid>
+</Page>
