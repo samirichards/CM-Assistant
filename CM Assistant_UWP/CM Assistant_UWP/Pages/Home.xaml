@@ -9,6 +9,32 @@
 
     <Grid>
         <TextBlock Text="This is a test"/>
+        <ListView Height="100"
+            ScrollViewer.HorizontalScrollMode="Enabled" 
+            ScrollViewer.HorizontalScrollBarVisibility="Auto"
+            ScrollViewer.VerticalScrollMode="Disabled"
+            ScrollViewer.VerticalScrollBarVisibility="Hidden"
+            ItemClick="TestListView_ItemClick"
+            x:Name="TestListView">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <ItemsWrapGrid/>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Vertical" Background="{StaticResource SystemControlAcrylicWindowBrush}" Width="100" Height="100">
+                        <Image Source="{Binding Icon}"/>
+                        <TextBlock Text="{Binding Name}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Grid Background="{StaticResource SystemControlAcrylicElementBrush}" x:Name="Overlay">
+            <Grid Width="400" Height="500" Background="White">
+                <Button Content="Close" Click="Button_Click" Background="Gray"/>
+            </Grid>
+        </Grid>
     </Grid>
 </Page>
 

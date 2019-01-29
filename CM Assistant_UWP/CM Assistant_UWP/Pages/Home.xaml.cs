@@ -11,6 +11,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
@@ -25,6 +26,27 @@ namespace CM_Assistant_UWP.Pages
         public Home()
         {
             this.InitializeComponent();
+
+            List<Classes.Viewmodels.ChildQuickAccess> childQuickAccesses = new List<Classes.Viewmodels.ChildQuickAccess>();
+            for (int i = 0; i < 10; i++)
+            {
+                Image img = new Image();
+                img.Source = new BitmapImage(new Uri(BaseUri, "/Assets/acc.png"));
+                childQuickAccesses.Add(new Classes.Viewmodels.ChildQuickAccess { Name = "Child " + i.ToString(), Icon = img });
+            }
+
+            TestListView.ItemsSource = childQuickAccesses;
+            TestListView.DataContext = childQuickAccesses;
+        }
+
+        private void TestListView_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            Overlay.Visibility = Visibility.Visible;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Overlay.Visibility = Visibility.Collapsed;
         }
     }
 }
