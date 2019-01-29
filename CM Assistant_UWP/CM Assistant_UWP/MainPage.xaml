@@ -6,16 +6,17 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
+    xmlns:controls="using:Microsoft.UI.Xaml.Controls"
     xmlns:oxy="using:OxyPlot.Windows"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <NavigationView x:Name="Nav_MainNavView"
+    <controls:NavigationView x:Name="Nav_MainNavView"
         IsBackButtonVisible="Collapsed"
         PaneDisplayMode="Top" Loaded="Nav_MainNavView_Loaded" ItemInvoked="Nav_MainNavView_ItemInvoked" SelectionChanged="Nav_MainNavView_SelectionChanged">
-        <NavigationView.AutoSuggestBox>
+        <controls:NavigationView.AutoSuggestBox>
             <AutoSuggestBox x:Name="ASB" Width="240" QueryIcon="Find" PlaceholderText="Search"/>
-        </NavigationView.AutoSuggestBox>
-        <NavigationView.MenuItems>
+        </controls:NavigationView.AutoSuggestBox>
+        <controls:NavigationView.MenuItems>
             <NavigationViewItem Content="Home" Tag="Home">
                 <NavigationViewItem.Icon>
                     <SymbolIcon Symbol="Home"/>
@@ -41,7 +42,7 @@
                     <FontIcon FontFamily="SegoeUI" Glyph="&#xA3;"/>
                 </NavigationViewItem.Icon>
             </NavigationViewItem>
-        </NavigationView.MenuItems>
+        </controls:NavigationView.MenuItems>
         <Frame x:Name="Frm_ContentFrame"/>
-    </NavigationView>
+    </controls:NavigationView>
 </Page>
