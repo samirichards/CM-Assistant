@@ -10,13 +10,13 @@
     xmlns:oxy="using:OxyPlot.Windows"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <controls:NavigationView x:Name="Nav_MainNavView"
+    <NavigationView x:Name="Nav_MainNavView"
         IsBackButtonVisible="Collapsed"
         PaneDisplayMode="Top" Loaded="Nav_MainNavView_Loaded" ItemInvoked="Nav_MainNavView_ItemInvoked" SelectionChanged="Nav_MainNavView_SelectionChanged">
-        <controls:NavigationView.AutoSuggestBox>
+        <NavigationView.AutoSuggestBox>
             <AutoSuggestBox x:Name="ASB" Width="240" QueryIcon="Find" PlaceholderText="Search"/>
-        </controls:NavigationView.AutoSuggestBox>
-        <controls:NavigationView.MenuItems>
+        </NavigationView.AutoSuggestBox>
+        <NavigationView.MenuItems>
             <NavigationViewItem Content="Home" Tag="Home">
                 <NavigationViewItem.Icon>
                     <SymbolIcon Symbol="Home"/>
@@ -42,7 +42,7 @@
                     <FontIcon FontFamily="SegoeUI" Glyph="&#xA3;"/>
                 </NavigationViewItem.Icon>
             </NavigationViewItem>
-        </controls:NavigationView.MenuItems>
+        </NavigationView.MenuItems>
         <Frame x:Name="Frm_ContentFrame"/>
-    </controls:NavigationView>
+    </NavigationView>
 </Page>
