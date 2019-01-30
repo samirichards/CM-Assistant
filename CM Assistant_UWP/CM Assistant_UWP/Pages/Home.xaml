@@ -8,6 +8,14 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
+        <Grid.Resources>
+            <Storyboard x:Name="EnterStoryboard">
+                <FadeInThemeAnimation Storyboard.TargetName="Overlay" />
+            </Storyboard>
+            <Storyboard x:Name="ExitStoryboard">
+                <FadeOutThemeAnimation Storyboard.TargetName="Overlay" />
+            </Storyboard>
+        </Grid.Resources>
         <TextBlock Text="This is a test"/>
         <ListView Height="100"
             ScrollViewer.HorizontalScrollMode="Enabled" 
@@ -15,7 +23,8 @@
             ScrollViewer.VerticalScrollMode="Disabled"
             ScrollViewer.VerticalScrollBarVisibility="Hidden"
             ItemClick="TestListView_ItemClick"
-            x:Name="TestListView">
+            x:Name="TestListView"
+            IsItemClickEnabled="True">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <ItemsWrapGrid/>
@@ -23,15 +32,15 @@
             </ListView.ItemsPanel>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Orientation="Vertical" Background="{StaticResource SystemControlAcrylicWindowBrush}" Width="100" Height="100">
-                        <Image Source="{Binding Icon}"/>
-                        <TextBlock Text="{Binding Name}"/>
+                    <StackPanel Orientation="Vertical" Background="{StaticResource SystemControlBackgroundBaseMediumBrush}">
+                        <Image Source="/Assets/acc.png" Width="100" Height="100"/>
+                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Bottom" Text="{Binding Name}"/>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Grid Background="{StaticResource SystemControlAcrylicElementBrush}" x:Name="Overlay">
-            <Grid Width="400" Height="500" Background="White">
+        <Grid Visibility="Collapsed" Background="{StaticResource SystemControlAcrylicElementBrush}" x:Name="Overlay">
+            <Grid Width="400" Height="500" Background="{StaticResource ApplicationSecondaryForegroundThemeBrush}">
                 <Button Content="Close" Click="Button_Click" Background="Gray"/>
             </Grid>
         </Grid>

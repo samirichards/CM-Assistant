@@ -119,8 +119,16 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Classes\Models\Business.cs" />
+    <Compile Include="Classes\Models\Child.cs" />
+    <Compile Include="Classes\Models\Client.cs" />
+    <Compile Include="Classes\Models\Entity.cs" />
+    <Compile Include="Classes\Models\LearningNote.cs" />
+    <Compile Include="Classes\Models\Session.cs" />
+    <Compile Include="Classes\Models\Times.cs" />
+    <Compile Include="Classes\Models\TimeSlot.cs" />
+    <Compile Include="Classes\Models\Transaction.cs" />
     <Compile Include="Classes\Viewmodels\ChildQuickAccess.cs" />
-    <Compile Include="Classes\Viewmodels\TestPlotViewModel.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -204,6 +212,9 @@
     <PackageReference Include="OxyPlot.Windows">
       <Version>1.0.0</Version>
     </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Classes\Utilities\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

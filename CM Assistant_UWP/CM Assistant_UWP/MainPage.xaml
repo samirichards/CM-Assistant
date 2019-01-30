@@ -43,6 +43,12 @@
                 </NavigationViewItem.Icon>
             </NavigationViewItem>
         </NavigationView.MenuItems>
-        <Frame x:Name="Frm_ContentFrame"/>
+        <Frame x:Name="Frm_ContentFrame">
+            <Frame.ContentTransitions>
+                <TransitionCollection>
+                    <EntranceThemeTransition/>
+                </TransitionCollection>
+            </Frame.ContentTransitions>
+        </Frame>
     </NavigationView>
 </Page>

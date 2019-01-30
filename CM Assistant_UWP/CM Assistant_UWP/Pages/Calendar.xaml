@@ -10,11 +10,7 @@
     xmlns:local1="using:CM_Assistant_UWP.Classes.Viewmodels"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Page.DataContext>
-        <local1:TestPlotViewModel/>
-    </Page.DataContext>
-
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <oxy:PlotView Model="{Binding PlotModel}"/>
+        
     </Grid>
 </Page>

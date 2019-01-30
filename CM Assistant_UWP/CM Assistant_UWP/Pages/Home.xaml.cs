@@ -42,9 +42,16 @@ namespace CM_Assistant_UWP.Pages
         private void TestListView_ItemClick(object sender, ItemClickEventArgs e)
         {
             Overlay.Visibility = Visibility.Visible;
+            EnterStoryboard.Begin();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            ExitStoryboard.Begin();
+            ExitStoryboard.Completed += ExitStoryboard_Completed;
+        }
+
+        private void ExitStoryboard_Completed(object sender, object e)
         {
             Overlay.Visibility = Visibility.Collapsed;
         }

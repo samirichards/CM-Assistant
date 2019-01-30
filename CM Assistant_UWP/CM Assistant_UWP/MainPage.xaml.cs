@@ -11,6 +11,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
@@ -43,24 +44,24 @@ namespace CM_Assistant_UWP
         {
             if (args.IsSettingsInvoked)
             {
-                Frm_ContentFrame.Navigate(typeof(Pages.Settings));
+                Frm_ContentFrame.Navigate(typeof(Pages.Settings), null, new DrillInNavigationTransitionInfo());
             }
             switch (args.InvokedItem)
             {
                 case "Home":
-                    Frm_ContentFrame.Navigate(typeof(Pages.Home));
+                    Frm_ContentFrame.Navigate(typeof(Pages.Home), null, new DrillInNavigationTransitionInfo());
                     break;
                 case "Times":
-                    Frm_ContentFrame.Navigate(typeof(Pages.Calendar));
+                    Frm_ContentFrame.Navigate(typeof(Pages.Calendar), null, new DrillInNavigationTransitionInfo());
                     break;
                 case "Clients":
-                    Frm_ContentFrame.Navigate(typeof(Pages.Clients));
+                    Frm_ContentFrame.Navigate(typeof(Pages.Clients), null, new DrillInNavigationTransitionInfo());
                     break;
                 case "Children":
-                    Frm_ContentFrame.Navigate(typeof(Pages.Register));
+                    Frm_ContentFrame.Navigate(typeof(Pages.Register), null, new DrillInNavigationTransitionInfo());
                     break;
                 case "Income/Outgoings":
-                    Frm_ContentFrame.Navigate(typeof(Pages.Proceeds));
+                    Frm_ContentFrame.Navigate(typeof(Pages.Proceeds), null, new DrillInNavigationTransitionInfo());
                     break;
             }
         }
@@ -69,25 +70,25 @@ namespace CM_Assistant_UWP
         {
             if (args.IsSettingsSelected)
             {
-                Frm_ContentFrame.Navigate(typeof(Pages.Settings));
+                Frm_ContentFrame.Navigate(typeof(Pages.Settings), null, new DrillInNavigationTransitionInfo());
             }
             NavigationViewItem item = (NavigationViewItem)args.SelectedItem;
             switch (item.Tag)
             {
                 case "Home":
-                    Frm_ContentFrame.Navigate(typeof(Pages.Home));
+                    Frm_ContentFrame.Navigate(typeof(Pages.Home), null, new DrillInNavigationTransitionInfo());
                     break;
                 case "Times":
-                    Frm_ContentFrame.Navigate(typeof(Pages.Calendar));
+                    Frm_ContentFrame.Navigate(typeof(Pages.Calendar), null, new DrillInNavigationTransitionInfo());
                     break;
                 case "Clients":
-                    Frm_ContentFrame.Navigate(typeof(Pages.Clients));
+                    Frm_ContentFrame.Navigate(typeof(Pages.Clients), null, new DrillInNavigationTransitionInfo());
                     break;
                 case "Children":
-                    Frm_ContentFrame.Navigate(typeof(Pages.Register));
+                    Frm_ContentFrame.Navigate(typeof(Pages.Register), null, new DrillInNavigationTransitionInfo());
                     break;
                 case "Proceeds":
-                    Frm_ContentFrame.Navigate(typeof(Pages.Proceeds));
+                    Frm_ContentFrame.Navigate(typeof(Pages.Proceeds), null, new DrillInNavigationTransitionInfo());
                     break;
             }
         }
