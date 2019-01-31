@@ -128,9 +128,13 @@
     <Compile Include="Classes\Models\Times.cs" />
     <Compile Include="Classes\Models\TimeSlot.cs" />
     <Compile Include="Classes\Models\Transaction.cs" />
+    <Compile Include="Classes\Utilities\StartUpChecks.cs" />
     <Compile Include="Classes\Viewmodels\ChildQuickAccess.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Authentication.xaml.cs">
+      <DependentUpon>Authentication.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Calendar.xaml.cs">
       <DependentUpon>Calendar.xaml</DependentUpon>
@@ -143,6 +147,9 @@
     </Compile>
     <Compile Include="Pages\Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\InitialSetup.xaml.cs">
+      <DependentUpon>InitialSetup.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Proceeds.xaml.cs">
       <DependentUpon>Proceeds.xaml</DependentUpon>
@@ -186,6 +193,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Pages\Authentication.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\Calendar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -199,6 +210,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\Home.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\InitialSetup.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -237,9 +252,7 @@
       <Version>1.5.231</Version>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Classes\Utilities\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
