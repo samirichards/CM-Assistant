@@ -8,7 +8,10 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
-        <TextBlock Text="Clients Page"/>
-    </Grid>
+    <NavigationView SelectionChanged="NavView_ClientsList_SelectionChanged" ItemInvoked="NavView_ClientsList_ItemInvoked" IsSettingsVisible="False" x:Name="NavView_ClientsList" IsBackButtonVisible="Collapsed" MenuItemsSource="{Binding ClientList, Mode=TwoWay}">
+        <NavigationView.PaneFooter>
+            <NavigationViewItem Tapped="Btn_AddClient_Tapped" Icon="Add" Content="Add Client" Tag="AddClient" x:Name="Btn_AddClient"/>
+        </NavigationView.PaneFooter>
+        <Frame Background="{StaticResource SystemControlAcrylicWindowBrush}" x:Name="Frm_ClientsView"/>
+    </NavigationView>
 </Page>

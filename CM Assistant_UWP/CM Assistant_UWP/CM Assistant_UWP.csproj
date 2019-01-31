@@ -144,6 +144,12 @@
     <Compile Include="Pages\Proceeds.xaml.cs">
       <DependentUpon>Proceeds.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\ProceedsPages\ProjectionsPage.xaml.cs">
+      <DependentUpon>ProjectionsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ProceedsPages\Taxes.xaml.cs">
+      <DependentUpon>Taxes.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Register.xaml.cs">
       <DependentUpon>Register.xaml</DependentUpon>
     </Compile>
@@ -190,6 +196,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\Proceeds.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ProceedsPages\ProjectionsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ProceedsPages\Taxes.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
