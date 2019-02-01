@@ -26,6 +26,14 @@
                 <TextBlock Text="Please enter your password" HorizontalAlignment="Center" Margin="0,18,0,0"/>
                 <PasswordBox PasswordChanged="Txt_Password_PasswordChanged" x:Name="Txt_Password" PlaceholderText="Password"/>
             </StackPanel>
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                <TextBlock Text="Dev Tools"/>
+                <Button Click="Btn_DropPasswords_Click" Name="Btn_DropPasswords" Content="Drop passwords"/>
+                <Button Click="Btn_DropDatabase_Click" Name="Btn_DropDatabase" Content="Drop database"/>
+                <Button Click="Btn_Reset_Click" Name="Btn_Reset" Content="Reset to initial state"/>
+                <TextBox Name="Txt_NewPassword" PlaceholderText="New password"/>
+                <Button Click="Btn_SetPassword_Click" Name="Btn_SetPassword" Content="Set New password"/>
+            </StackPanel>
             <Button Click="Btn_Login_Click" IsEnabled="False" x:Name="Btn_Login" Content="Continue" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="16"/>
         </Grid>
     </Grid>

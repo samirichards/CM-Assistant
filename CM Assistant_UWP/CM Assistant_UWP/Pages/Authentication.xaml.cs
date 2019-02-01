@@ -57,5 +57,26 @@ namespace CM_Assistant_UWP.Pages
                 Btn_Login.IsEnabled = false;
             }
         }
+
+        private void Btn_DropPasswords_Click(object sender, RoutedEventArgs e)
+        {
+            Classes.Utilities.Security.RemovePassword();
+        }
+
+        private void Btn_DropDatabase_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Btn_Reset_Click(object sender, RoutedEventArgs e)
+        {
+            Classes.Utilities.Security.RemovePassword();
+            Classes.Utilities.StartUpChecks.ResetFirstBoot();
+        }
+
+        private void Btn_SetPassword_Click(object sender, RoutedEventArgs e)
+        {
+            Classes.Utilities.Security.SetPassword(Txt_NewPassword.Text);
+        }
     }
 }

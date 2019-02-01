@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Xaml.Controls;
 
 namespace CM_Assistant_UWP.Classes.Utilities
 {
@@ -15,21 +16,25 @@ namespace CM_Assistant_UWP.Classes.Utilities
                 var vault = new Windows.Security.Credentials.PasswordVault();
                 try
                 {
-                    var password = new Windows.Security.Credentials.PasswordCredential();
-                    password.UserName = "user";
-                    password.Password = input;
-                    password.Resource = "CM-Assistant";
+                    var password = new Windows.Security.Credentials.PasswordCredential
+                    {
+                        UserName = "user",
+                        Password = input,
+                        Resource = "CM-Assistant"
+                    };
 
                     vault.Add(password);
                     return true;
                 }
                 catch (Exception)
                 {
-                    vault.Remove(vault.FindAllByUserName("user").FirstOrDefault());
-                    var password = new Windows.Security.Credentials.PasswordCredential();
-                    password.UserName = "user";
-                    password.Resource = "CM-Assistant";
-                    password.Password = input;
+                    vault.Remove(vault.FindAllByUserName("user").Single());
+                    var password = new Windows.Security.Credentials.PasswordCredential
+                    {
+                        UserName = "user",
+                        Resource = "CM-Assistant",
+                        Password = input
+                    };
                     return true;
                 }
             }
@@ -42,13 +47,40 @@ namespace CM_Assistant_UWP.Classes.Utilities
         public static bool CheckPassword(string input)
         {
             var vault = new Windows.Security.Credentials.PasswordVault();
-            if (vault.FindAllByUserName("user").FirstOrDefault().Password == input)
+            if (vault.FindAllByUserName("user").Single() != null)
             {
-                return true;
+                Windows.Security.Credentials.PasswordCredential  temp = vault.FindAllByUserName("user").Single();
+                temp.RetrievePassword();
+                if (temp.Password == input)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
             else
             {
                 return false;
+            }
+        }
+
+        public static void RemovePassword()
+        {
+            try
+            {
+                var vault = new Windows.Security.Credentials.PasswordVault();
+                vault.Remove(vault.FindAllByUserName("user").First());
+            }
+            catch (Exception e)
+            {
+                ContentDialog dialog = new ContentDialog
+                {
+                    Title = "Error",
+                    Content = "Error removing password" + Environment.NewLine + e.Message,
+                    CloseButtonText = "Okay"
+                };
             }
         }
     }
