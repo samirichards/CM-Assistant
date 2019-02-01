@@ -66,10 +66,21 @@ namespace CM_Assistant_UWP
             {
                 if (rootFrame.Content == null)
                 {
-                    // When the navigation stack isn't restored navigate to the first page,
-                    // configuring the new page by passing required information as a navigation
-                    // parameter
-                    rootFrame.Navigate(typeof(MainPage), e.Arguments);
+                    if (!Classes.Utilities.StartUpChecks.IsFirstboot())
+                    {
+                        if (Classes.Utilities.StartUpChecks.IsPasswordSet())
+                        {
+                            rootFrame.Navigate(typeof(Pages.Authentication), e.Arguments);
+                        }
+                        else
+                        {
+                            rootFrame.Navigate(typeof(Pages.InitialSetup), e.Arguments);
+                        }
+                    }
+                    else
+                    {
+                        rootFrame.Navigate(typeof(Pages.Authentication), e.Arguments);
+                    }
                 }
                 // Ensure the current window is active
                 Window.Current.Activate();

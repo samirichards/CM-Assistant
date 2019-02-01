@@ -6,9 +6,27 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="{ThemeResource SystemControlAcrylicWindowBrush}">
 
     <Grid>
-
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="400"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="450"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Column="1" Grid.Row="1" Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+            <StackPanel Margin="8">
+                <TextBlock Text="Welcome to the CM Assistant" FontSize="24" HorizontalAlignment="Center"/>
+                <TextBlock Text="This page is still under construction, more will be added" HorizontalAlignment="Center" TextWrapping="WrapWholeWords"/>
+                <TextBlock Text="Please enter your password" HorizontalAlignment="Center" Margin="0,18,0,0"/>
+                <PasswordBox PasswordChanged="Txt_Password_PasswordChanged" x:Name="Txt_Password" PlaceholderText="Password"/>
+            </StackPanel>
+            <Button Click="Btn_Login_Click" IsEnabled="False" x:Name="Btn_Login" Content="Continue" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="16"/>
+        </Grid>
     </Grid>
 </Page>

@@ -23,12 +23,16 @@
             <StackPanel Margin="8">
                 <TextBlock Text="Welcome to the CM Assistant" FontSize="24" HorizontalAlignment="Center"/>
                 <TextBlock Text="This page is still under construction, more will be added" HorizontalAlignment="Center" TextWrapping="WrapWholeWords"/>
-                <TextBlock Text="Please Choose a password" HorizontalAlignment="Center" Margin="0,18,0,0"/>
-                <TextBox x:Name="Txt_Password" PlaceholderText="Password"/>
+                <TextBlock Text="Please Choose a password (more than 6 characters)" HorizontalAlignment="Center" Margin="0,18,0,0"/>
+                <PasswordBox x:Name="Txt_Password" PlaceholderText="Password" PasswordChanged="Txt_Password_PasswordChanged"/>
                 <TextBlock Text="Please enter the password again" HorizontalAlignment="Center" Margin="0,18,0,0"/>
-                <TextBox x:Name="Txt_ConfPassword" PlaceholderText="Password again"/>
+                <PasswordBox x:Name="Txt_ConfPassword" PlaceholderText="Password again" PasswordChanged="Txt_ConfPassword_PasswordChanged"/>
+                <StackPanel Visibility="Collapsed" Name="Ico_Alert" Orientation="Horizontal" Margin="8" HorizontalAlignment="Center">
+                    <SymbolIcon Symbol="Important"/>
+                    <TextBlock Text="Passwords don't match or are less than 6 characters"/>
+                </StackPanel>
             </StackPanel>
-            <Button Content="Confirm" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="16"/>
+                <Button Click="Btn_Conf_Click" IsEnabled="False" Name="Btn_Conf" Content="Confirm" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="16"/>
         </Grid>
     </Grid>
 </Page>

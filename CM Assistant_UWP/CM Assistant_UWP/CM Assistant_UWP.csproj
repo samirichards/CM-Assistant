@@ -128,6 +128,7 @@
     <Compile Include="Classes\Models\Times.cs" />
     <Compile Include="Classes\Models\TimeSlot.cs" />
     <Compile Include="Classes\Models\Transaction.cs" />
+    <Compile Include="Classes\Utilities\Security.cs" />
     <Compile Include="Classes\Utilities\StartUpChecks.cs" />
     <Compile Include="Classes\Viewmodels\ChildQuickAccess.cs" />
     <Compile Include="MainPage.xaml.cs">

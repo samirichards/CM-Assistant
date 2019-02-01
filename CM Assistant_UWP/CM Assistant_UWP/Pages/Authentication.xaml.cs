@@ -11,6 +11,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
@@ -25,6 +26,36 @@ namespace CM_Assistant_UWP.Pages
         public Authentication()
         {
             this.InitializeComponent();
+        }
+
+        private void Btn_Login_Click(object sender, RoutedEventArgs e)
+        {
+            if (Classes.Utilities.Security.CheckPassword(Txt_Password.Password))
+            {
+                ((Frame)(Window.Current.Content)).Navigate(typeof(MainPage), null, new DrillInNavigationTransitionInfo());
+            }
+            else
+            {
+                var dialog = new ContentDialog
+                {
+                    Title = "Error",
+                    Content = "The password you entered was incorrect",
+                    CloseButtonText = "Ok"
+                };
+                dialog.ShowAsync();
+            }
+        }
+
+        private void Txt_Password_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            if (((PasswordBox)sender).Password.Length >= 6)
+            {
+                Btn_Login.IsEnabled = true;
+            }
+            else
+            {
+                Btn_Login.IsEnabled = false;
+            }
         }
     }
 }
