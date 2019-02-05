@@ -38,12 +38,7 @@ namespace CM_Assistant_UWP.Pages
 
         private void NavigationViewItem_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            NavigationViewItem temp = new NavigationViewItem
-            {
-                Content = "Test",
-                Icon = new SymbolIcon(Symbol.Account)
-            };
-            Lst_ClientList.Items.Add(temp);
+            Frm_ClientContent.Navigate(typeof(ClientsFolder.AddClient), null, new DrillInNavigationTransitionInfo());
         }
 
         private void Lst_ClientList_ItemClick(object sender, ItemClickEventArgs e)
