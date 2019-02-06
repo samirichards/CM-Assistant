@@ -17,6 +17,9 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using SQLite;
+using SQLitePCL;
+using CM_Assistant_UWP.Classes.Models;
 
 namespace CM_Assistant_UWP
 {
@@ -43,7 +46,19 @@ namespace CM_Assistant_UWP
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
             Frame rootFrame = Window.Current.Content as Frame;
+            Windows.Storage.StorageFolder localFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
+            if (!File.Exists(localFolder + "\\data.db"))
+            {/*
+                SQLiteConnection conn = new SQLiteConnection(localFolder + "data.db");
+                conn.CreateTable<Client>();
+                conn.CreateTable<Session>();
+                conn.CreateTable<Transaction>();
+                conn.Commit();
+                conn.Close();
 
+                Database design needs to be redone very quickly
+             */
+            }
             // Do not repeat app initialization when the Window already has content,
             // just ensure that the window is active
             if (rootFrame == null)

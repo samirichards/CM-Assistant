@@ -34,7 +34,7 @@
             </NavigationViewItem>
             <NavigationViewItem Content="Children" Tag="Children">
                 <NavigationViewItem.Icon>
-                    <SymbolIcon Symbol="ContactInfo"/>
+                    <SymbolIcon Symbol="People"/>
                 </NavigationViewItem.Icon>
             </NavigationViewItem>
             <NavigationViewItem Content="Income/Outgoings" Tag="Proceeds">

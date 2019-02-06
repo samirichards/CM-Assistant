@@ -21,7 +21,7 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <NavigationViewItem Tapped="NavigationViewItem_Tapped" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Content="Add Client" Icon="Add"/>
+            <NavigationViewItem Tapped="NavigationViewItem_Tapped" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Content="Add Client" Icon="AddFriend"/>
         </Grid>
         <Frame Grid.Column="1" Background="{StaticResource SystemControlAcrylicWindowBrush}" x:Name="Frm_ClientContent"/>
     </Grid>
