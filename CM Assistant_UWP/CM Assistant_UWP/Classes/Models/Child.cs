@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Xaml.Controls;
 
 namespace CM_Assistant_UWP.Classes.Models
 {
@@ -15,7 +16,8 @@ namespace CM_Assistant_UWP.Classes.Models
         public string DietNotes { get; set; }
         public string MedicalNotes { get; set; }
         public string Notes { get; set; }
-        public List<LearningNote> LearningNotes { get; set; }
+        public int ParentID { get; set; }
         public Times Timetable { get; set; }
+        public Image Photo { get; set; }
     }
 }
