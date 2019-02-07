@@ -8,21 +8,10 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*" MinWidth="240" MaxWidth="320"/>
-            <ColumnDefinition Width="3*"/>
-        </Grid.ColumnDefinitions>
-        <Grid Background="{StaticResource SystemControlAcrylicWindowBrush}">
-            <ListView IsItemClickEnabled="True" ItemClick="Lst_ClientList_ItemClick" CanReorderItems="True" ReorderMode="Enabled" SelectionMode="Single" Name="Lst_ClientList" ItemsSource="{Binding ClientList}" Margin="0,0,0,44">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <NavigationViewItem/>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+    <NavigationView x:Name="Nav_ClientList" IsSettingsVisible="False" IsBackButtonVisible="Collapsed" IsBackEnabled="False" ItemInvoked="Nav_ClientList_ItemInvoked" SelectionChanged="Nav_ClientList_SelectionChanged">
+        <NavigationView.PaneFooter>
             <NavigationViewItem Tapped="NavigationViewItem_Tapped" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Content="Add Client" Icon="Add"/>
-        </Grid>
+        </NavigationView.PaneFooter>
         <Frame Grid.Column="1" Background="{StaticResource SystemControlAcrylicWindowBrush}" x:Name="Frm_ClientContent"/>
-    </Grid>
+    </NavigationView>
 </Page>

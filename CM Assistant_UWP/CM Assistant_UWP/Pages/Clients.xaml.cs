@@ -33,7 +33,7 @@ namespace CM_Assistant_UWP.Pages
                 Content = "Test",
                 Icon = new SymbolIcon(Symbol.Account)
             };
-            Lst_ClientList.Items.Add(temp);
+            Nav_ClientList.MenuItems.Add(temp);
         }
 
         private void NavigationViewItem_Tapped(object sender, TappedRoutedEventArgs e)
@@ -41,7 +41,12 @@ namespace CM_Assistant_UWP.Pages
             Frm_ClientContent.Navigate(typeof(ClientsFolder.AddClient), null, new DrillInNavigationTransitionInfo());
         }
 
-        private void Lst_ClientList_ItemClick(object sender, ItemClickEventArgs e)
+        private void Nav_ClientList_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
+        {
+            Frm_ClientContent.Navigate(typeof(ClientsFolder.ViewClient), null, new DrillInNavigationTransitionInfo());
+        }
+
+        private void Nav_ClientList_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
         {
             Frm_ClientContent.Navigate(typeof(ClientsFolder.ViewClient), null, new DrillInNavigationTransitionInfo());
         }
