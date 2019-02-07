@@ -10,7 +10,7 @@
 
     <NavigationView x:Name="Nav_ClientList" IsSettingsVisible="False" IsBackButtonVisible="Collapsed" IsBackEnabled="False" ItemInvoked="Nav_ClientList_ItemInvoked" SelectionChanged="Nav_ClientList_SelectionChanged">
         <NavigationView.PaneFooter>
-            <NavigationViewItem Tapped="NavigationViewItem_Tapped" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Content="Add Client" Icon="Add"/>
+            <NavigationViewItem Tapped="NavigationViewItem_Tapped" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Content="Add Client" Icon="AddFriend"/>
         </NavigationView.PaneFooter>
         <Frame Grid.Column="1" Background="{StaticResource SystemControlAcrylicWindowBrush}" x:Name="Frm_ClientContent"/>
     </NavigationView>
