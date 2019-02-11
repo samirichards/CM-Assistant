@@ -12,6 +12,8 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using SQLite;
+using SQLitePCL;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -22,9 +24,24 @@ namespace CM_Assistant_UWP.Pages.ClientsFolder
     /// </summary>
     public sealed partial class ViewClient : Page
     {
+        private int ClientID { get; set; }
         public ViewClient()
         {
             this.InitializeComponent();
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            ClientID = int.Parse(e.Parameter.ToString());
+            UpdatePage();
+        }
+
+        public void UpdatePage()
+        {
+            Windows.Storage.StorageFolder localFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
+            SQLiteConnection conn = new SQLiteConnection(localFolder.Path + "\\data.db");
+            DataContext = conn.Table<Classes.Models.Client>().Where(a => a.ID == ClientID).Single();
+            //This method needs finishing
         }
     }
 }

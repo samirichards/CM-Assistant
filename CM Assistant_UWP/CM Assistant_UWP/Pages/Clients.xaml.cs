@@ -14,6 +14,8 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI.Xaml.Media.Animation;
+using SQLite;
+using SQLitePCL;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -27,13 +29,27 @@ namespace CM_Assistant_UWP.Pages
         public Clients()
         {
             this.InitializeComponent();
+            RefreshClients();
+        }
 
-            NavigationViewItem temp = new NavigationViewItem
+        public void RefreshClients()
+        {
+            Windows.Storage.StorageFolder localFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
+            SQLiteConnection conn = new SQLiteConnection(localFolder.Path + "\\data.db");
+
+            List<NavigationViewItem> navigationViewItems = new List<NavigationViewItem>();
+            foreach (Classes.Models.Client item in conn.Table<Classes.Models.Client>())
             {
-                Content = "Test",
-                Icon = new SymbolIcon(Symbol.Account)
-            };
-            Nav_ClientList.MenuItems.Add(temp);
+                NavigationViewItem navigationViewItem = new NavigationViewItem
+                {
+                    Content = item.Name,
+                    Icon = new SymbolIcon(Symbol.Account),
+                    Tag = item.ID
+                };
+                navigationViewItems.Add(navigationViewItem);
+            }
+            conn.Close();
+            Nav_ClientList.MenuItemsSource = navigationViewItems;
         }
 
         private void NavigationViewItem_Tapped(object sender, TappedRoutedEventArgs e)
@@ -43,12 +59,17 @@ namespace CM_Assistant_UWP.Pages
 
         private void Nav_ClientList_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
         {
-            Frm_ClientContent.Navigate(typeof(ClientsFolder.ViewClient), null, new DrillInNavigationTransitionInfo());
+            Frm_ClientContent.Navigate(typeof(ClientsFolder.ViewClient), args.InvokedItemContainer.Tag, new DrillInNavigationTransitionInfo());
         }
 
         private void Nav_ClientList_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
         {
-            Frm_ClientContent.Navigate(typeof(ClientsFolder.ViewClient), null, new DrillInNavigationTransitionInfo());
+            Frm_ClientContent.Navigate(typeof(ClientsFolder.ViewClient), ((NavigationViewItem)args.SelectedItem).Tag, new DrillInNavigationTransitionInfo());
+        }
+
+        private void NavItem_Refresh_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            RefreshClients();
         }
     }
 }

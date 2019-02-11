@@ -9,15 +9,17 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <ScrollViewer>
-        <StackPanel Name="Stk_Form" Margin="8" HorizontalAlignment="Center" MaxWidth="800" MinWidth="400">
-            <TextBox PlaceholderText="First Name" x:Name="Txt_FirstNameInput" Margin="8" VerticalAlignment="Center"/>
-            <TextBox PlaceholderText="Last Name" x:Name="Txt_LastNameInput" Margin="8" VerticalAlignment="Center"/>
-            <TextBox PlaceholderText="Postcode" x:Name="Txt_Postcode" Margin="8" VerticalAlignment="Center"/>
-            <TextBox MaxLength="11" PlaceholderText="Phone number" x:Name="Txt_PhoneNumber" Margin="8" VerticalAlignment="Center" BeforeTextChanging="Txt_PhoneNumber_BeforeTextChanging"/>
-            <TextBox PlaceholderText="Address" x:Name="Txt_Address" AcceptsReturn="True" TextWrapping="Wrap" ScrollViewer.VerticalScrollBarVisibility="Auto" Margin="8" VerticalAlignment="Center"/>
-            <TextBox PlaceholderText="Notes" x:Name="Txt_Notes" AcceptsReturn="True" TextWrapping="Wrap" ScrollViewer.VerticalScrollBarVisibility="Auto" Margin="8" VerticalAlignment="Center"/>
-            <Button Click="Btn_Accept_Click" Content="Accept" x:Name="Btn_Accept" HorizontalAlignment="Right" Margin="8"/>
-            <TextBlock HorizontalAlignment="Center" Opacity="0.52" Text="You will be able to add children for this client after this page"/>
-        </StackPanel>
+        <Grid>
+            <StackPanel Name="Stk_Form" Margin="8" HorizontalAlignment="Center" MaxWidth="800" MinWidth="400">
+                <TextBox PlaceholderText="*First Name" x:Name="Txt_FirstNameInput" Margin="8" VerticalAlignment="Center"/>
+                <TextBox PlaceholderText="*Last Name" x:Name="Txt_LastNameInput" Margin="8" VerticalAlignment="Center"/>
+                <TextBox PlaceholderText="*Postcode" x:Name="Txt_Postcode" Margin="8" VerticalAlignment="Center"/>
+                <TextBox MaxLength="11" PlaceholderText="*Phone number" x:Name="Txt_PhoneNumber" Margin="8" VerticalAlignment="Center" BeforeTextChanging="Txt_PhoneNumber_BeforeTextChanging"/>
+                <TextBox PlaceholderText="*Address" x:Name="Txt_Address" AcceptsReturn="True" TextWrapping="Wrap" ScrollViewer.VerticalScrollBarVisibility="Auto" Margin="8" VerticalAlignment="Center"/>
+                <TextBox PlaceholderText="Notes" x:Name="Txt_Notes" AcceptsReturn="True" TextWrapping="Wrap" ScrollViewer.VerticalScrollBarVisibility="Auto" Margin="8" VerticalAlignment="Center"/>
+                <Button Click="Btn_Accept_Click" Content="Accept" x:Name="Btn_Accept" HorizontalAlignment="Right" Margin="8"/>
+                <TextBlock HorizontalAlignment="Center" Opacity="0.52" Text="* Required Fields"/>
+            </StackPanel>
+        </Grid>
     </ScrollViewer>
 </Page>

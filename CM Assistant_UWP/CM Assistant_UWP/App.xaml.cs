@@ -48,14 +48,18 @@ namespace CM_Assistant_UWP
             Frame rootFrame = Window.Current.Content as Frame;
             Windows.Storage.StorageFolder localFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
             if (!File.Exists(localFolder.Path + "\\data.db"))
-            {/*
-                SQLiteConnection conn = new SQLiteConnection(localFolder.Path + "data.db");
+            {
+                SQLiteConnection conn = new SQLiteConnection(localFolder.Path + "\\data.db");
                 conn.CreateTable<Client>();
                 conn.CreateTable<Session>();
                 conn.CreateTable<Transaction>();
+                conn.CreateTable<Business>();
+                conn.CreateTable<Child>();
+                conn.CreateTable<Times>();
+                conn.CreateTable<LearningNote>();
                 conn.Commit();
                 conn.Close();
-            */
+            
             }
             // Do not repeat app initialization when the Window already has content,
             // just ensure that the window is active

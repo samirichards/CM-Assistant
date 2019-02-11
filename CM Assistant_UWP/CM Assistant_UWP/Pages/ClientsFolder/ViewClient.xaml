@@ -8,6 +8,6 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <TextBlock FontSize="48" Text="ldfdlfbbh;dshlfi"/>
+        <TextBlock FontSize="48" Text="{Binding Name}"/>
     </Grid>
 </Page>

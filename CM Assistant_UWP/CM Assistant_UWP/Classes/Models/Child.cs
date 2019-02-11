@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Controls;
+using SQLite;
+using SQLitePCL;
 
 namespace CM_Assistant_UWP.Classes.Models
 {
@@ -17,7 +19,7 @@ namespace CM_Assistant_UWP.Classes.Models
         public string MedicalNotes { get; set; }
         public string Notes { get; set; }
         public int ParentID { get; set; }
-        public Times Timetable { get; set; }
-        public Image Photo { get; set; }
+        public int TimesID { get; set; }
+        public byte[] Photo { get; set; }
     }
 }

@@ -12,6 +12,8 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using SQLite;
+using SQLitePCL;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -34,23 +36,47 @@ namespace CM_Assistant_UWP.Pages.ClientsFolder
 
         private void Btn_Accept_Click(object sender, RoutedEventArgs e)
         {
-            ((Button)sender).Content = IsFormValid().ToString();
+            if (IsFormValid())
+            {
+                Windows.Storage.StorageFolder localFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
+                SQLiteConnection conn = new SQLiteConnection(localFolder.Path + "\\data.db");
+                Classes.Models.Client client = new Classes.Models.Client
+                {
+                    FirstName = Txt_FirstNameInput.Text,
+                    LastName = Txt_LastNameInput.Text,
+                    PhoneNumber = Txt_PhoneNumber.Text,
+                    Postcode = Txt_Postcode.Text,
+                    Address = Txt_Address.Text,
+                    Notes = Txt_Notes.Text,
+                };
+                client.Name = client.FirstName + " " + client.LastName;
+                conn.Insert(client);
+                conn.Commit();
+                conn.Close();
+            }
+            else
+            {
+                ContentDialog dialog = new ContentDialog
+                {
+                    Title = "Error",
+                    Content = "There are empty required fields",
+                    CloseButtonText = "Okay"
+                };
+                dialog.ShowAsync();
+            }
         }
 
         private bool IsFormValid()
         {
-            foreach (var item in Stk_Form.Children.Where(a => a.GetType() == typeof(TextBox)))
+            bool temp = true;
+            foreach (var item in Stk_Form.Children.Where(a => a.GetType() == typeof(TextBox) && ((TextBox)a).Name != "Txt_Notes"))
             {
                 if (((TextBox)item).Text == string.Empty)
                 {
-                    return false;
-                }
-                else
-                {
-                    return true;
+                    temp = false;
                 }
             }
-            return false;
+            return temp;
         }
     }
 }
