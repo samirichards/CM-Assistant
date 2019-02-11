@@ -7,7 +7,50 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
-        <TextBlock FontSize="48" Text="{Binding Name}"/>
-    </Grid>
+    <ScrollViewer>
+        <Grid>
+            <StackPanel Name="Stk_Form" Margin="8" HorizontalAlignment="Center" MaxWidth="800" MinWidth="400">
+                <TextBlock Text="{Binding Name}" FontSize="24" Margin="8"/>
+                <StackPanel Margin="8" Orientation="Horizontal">
+                    <TextBlock Text="Phone Number: "/>
+                    <TextBlock Margin="4,0,0,0" Text="{Binding PhoneNumber}"/>
+                </StackPanel>
+                <StackPanel Margin="8" Orientation="Horizontal">
+                    <TextBlock Text="Address: "/>
+                    <TextBlock Margin="4,0,0,0" Text="{Binding Address}"/>
+                </StackPanel>
+                <StackPanel Margin="8" Orientation="Horizontal">
+                    <TextBlock Text="Postcode: "/>
+                    <TextBlock Margin="4,0,0,0" Text="{Binding Postcode}"/>
+                </StackPanel>
+                <StackPanel Margin="8" Orientation="Horizontal">
+                    <TextBlock Text="Notes: "/>
+                    <TextBlock Margin="4,0,0,0" MaxLines="10" TextWrapping="WrapWholeWords" Text="{Binding Notes}"/>
+                </StackPanel>
+                <TextBlock Margin="8" Text="Children in care"/>
+                <ListView Height="150">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
+    <Page.Resources>
+        <DataTemplate x:Name="Normal" x:Key="Normal">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <!--This part needs to be finished-->
+                </Grid.ColumnDefinitions>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Name="Detail" x:Key="Detail">
+            
+        </DataTemplate>
+    </Page.Resources>
 </Page>
