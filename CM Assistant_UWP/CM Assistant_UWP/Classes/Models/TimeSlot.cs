@@ -8,13 +8,13 @@ using SQLitePCL;
 
 namespace CM_Assistant_UWP.Classes.Models
 {
-    class Session
+    class TimeSlot
     {
-        [AutoIncrement, PrimaryKey]
-        public int SessionID { get; set; }
+        [PrimaryKey, AutoIncrement]
+        public int ID { get; set; }
         public int ChildID { get; set; }
-        public DateTime Start { get; set; }
-        public DateTime End { get; set; }
-        public bool SessionOpen { get; set; }
+        public DateTime StartTime { get; set; }
+        public DateTime EndTime { get; set; }
+        public int DayOfWeek { get; set; }
     }
 }

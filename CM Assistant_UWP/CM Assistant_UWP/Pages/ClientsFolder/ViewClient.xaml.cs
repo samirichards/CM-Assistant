@@ -43,5 +43,10 @@ namespace CM_Assistant_UWP.Pages.ClientsFolder
             DataContext = conn.Table<Classes.Models.Client>().Where(a => a.ID == ClientID).Single();
             //This method needs finishing
         }
+
+        private void Btn_AddChild_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

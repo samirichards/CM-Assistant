@@ -9,17 +9,18 @@ using SQLitePCL;
 
 namespace CM_Assistant_UWP.Classes.Models
 {
-    class Child
+    class Child : Entity
     {
-        public string Name { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
         public int Age { get; set; }
+        public DateTime DateOfBirth { get; set; }
         public double Rate { get; set; }
         public double AltRate { get; set; }
         public string DietNotes { get; set; }
         public string MedicalNotes { get; set; }
         public string Notes { get; set; }
         public int ParentID { get; set; }
-        public int TimesID { get; set; }
         public byte[] Photo { get; set; }
     }
 }

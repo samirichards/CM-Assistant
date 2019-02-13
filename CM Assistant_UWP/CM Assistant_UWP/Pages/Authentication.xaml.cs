@@ -65,7 +65,8 @@ namespace CM_Assistant_UWP.Pages
 
         private void Btn_DropDatabase_Click(object sender, RoutedEventArgs e)
         {
-
+            Windows.Storage.StorageFolder localFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
+            File.Delete(localFolder.Path + "\\data.db");
         }
 
         private void Btn_Reset_Click(object sender, RoutedEventArgs e)

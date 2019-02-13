@@ -55,7 +55,7 @@ namespace CM_Assistant_UWP
                 conn.CreateTable<Transaction>();
                 conn.CreateTable<Business>();
                 conn.CreateTable<Child>();
-                conn.CreateTable<Times>();
+                conn.CreateTable<TimeSlot>();
                 conn.CreateTable<LearningNote>();
                 conn.Commit();
                 conn.Close();

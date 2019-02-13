@@ -125,7 +125,7 @@
     <Compile Include="Classes\Models\Entity.cs" />
     <Compile Include="Classes\Models\LearningNote.cs" />
     <Compile Include="Classes\Models\Session.cs" />
-    <Compile Include="Classes\Models\Times.cs" />
+    <Compile Include="Classes\Models\TimeSlot.cs" />
     <Compile Include="Classes\Models\Transaction.cs" />
     <Compile Include="Classes\Utilities\Security.cs" />
     <Compile Include="Classes\Utilities\StartUpChecks.cs" />
@@ -141,6 +141,9 @@
     </Compile>
     <Compile Include="Pages\Clients.xaml.cs">
       <DependentUpon>Clients.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ClientsFolder\AddChild.xaml.cs">
+      <DependentUpon>AddChild.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\ClientsFolder\AddClient.xaml.cs">
       <DependentUpon>AddClient.xaml</DependentUpon>
@@ -211,6 +214,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\ClientsFolder\AddChild.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\ClientsFolder\AddClient.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -266,7 +273,10 @@
       <Version>1.5.231</Version>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="ClassDiagram2.cd" />
+    <None Include="ClassDiagram3.cd" />
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
