@@ -10,8 +10,10 @@
 
     <ScrollViewer>
         <Grid>
-            <StackPanel Name="Stk_Form" Margin="8" HorizontalAlignment="Center" MaxWidth="800" MinWidth="400">
-                <StackPanel Margin="8" HorizontalAlignment="Center" MaxWidth="800" MinWidth="400">
+            <StackPanel Margin="8" HorizontalAlignment="Center" MaxWidth="800" MinWidth="400">
+                <StackPanel Name="Stk_Form" Margin="8" HorizontalAlignment="Center" MaxWidth="800" MinWidth="400">
+                    <Image x:Name="Img_ChildPhoto" HorizontalAlignment="Center" Margin="8" Width="100" Height="100" Source="{Binding Photo}"/>
+                    <Button Content="Edit Photo" x:Name="Btn_EditPhoto" Click="Btn_EditPhoto_ClickAsync" HorizontalAlignment="Center" Margin="4"/>
                     <TextBox PlaceholderText="*First Name" x:Name="Txt_FirstNameInput" Margin="8" VerticalAlignment="Center"/>
                     <TextBox PlaceholderText="*Last Name" x:Name="Txt_LastNameInput" Margin="8" VerticalAlignment="Center"/>
                     <DatePicker HorizontalAlignment="Stretch" x:Name="DateP_DOB_Input" Margin="8" Header="Date of Birth*" />
@@ -22,9 +24,9 @@
                     <TextBox PlaceholderText="Diet Notes" x:Name="Txt_DietNotes" AcceptsReturn="True" TextWrapping="Wrap" ScrollViewer.VerticalScrollBarVisibility="Auto" Margin="8"/>
                     <TextBox PlaceholderText="Medical Notes" x:Name="Txt_MedicalNotes" AcceptsReturn="True" TextWrapping="Wrap" ScrollViewer.VerticalScrollBarVisibility="Auto" Margin="8"/>
                     <TextBox PlaceholderText="Other Notes" x:Name="Txt_Notes" AcceptsReturn="True" TextWrapping="Wrap" ScrollViewer.VerticalScrollBarVisibility="Auto" Margin="8"/>
-                    
-                    <Button Content="Accept" x:Name="Btn_Accept" HorizontalAlignment="Right" Margin="8"/>
+                    <Button Content="Accept" Click="Btn_Accept_Click" x:Name="Btn_Accept" HorizontalAlignment="Right" Margin="8"/>
                     <TextBlock HorizontalAlignment="Center" Opacity="0.52" Text="* Required Fields"/>
+                    <TextBlock HorizontalAlignment="Center" Opacity="0.52" Text="Times for this child can be set on the Times tab"/>
                 </StackPanel>
             </StackPanel>
         </Grid>

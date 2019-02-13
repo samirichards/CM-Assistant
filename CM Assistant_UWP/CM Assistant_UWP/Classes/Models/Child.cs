@@ -13,8 +13,8 @@ namespace CM_Assistant_UWP.Classes.Models
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public int Age { get; set; }
-        public DateTime DateOfBirth { get; set; }
+        public double Age { get; set; }
+        public DateTimeOffset DateOfBirth { get; set; }
         public double Rate { get; set; }
         public double AltRate { get; set; }
         public string DietNotes { get; set; }

@@ -4,25 +4,30 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:models="using:CM_Assistant_UWP.Classes.Models"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Page.Resources>
-        <DataTemplate x:Name="Normal" x:Key="Normal">
-            <Grid Background="{StaticResource SystemControlAcrylicWindowBrush}" Height="60">
+        <DataTemplate x:Name="Normal" x:Key="Normal" x:DataType="models:Child">
+            <Grid Height="60">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
-                <Image Grid.Column="0" Source="{Binding Photo}" HorizontalAlignment="Center" VerticalAlignment="Center" Width="50" Height="50"/>
+                <Ellipse Height="50" Width="50" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <Ellipse.Fill>
+                        <ImageBrush x:Name="Img_ChildThumbnail"  ImageSource="{Binding Photo}"/>
+                    </Ellipse.Fill>
+                </Ellipse>
                 <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                    <TextBlock Text="{Binding Name}" FontSize="18" FontWeight="Bold" Margin="8" HorizontalAlignment="Left"/>
-                    <TextBox Text="{Binding Age}" Margin="8" HorizontalAlignment="Left"/>
+                    <TextBlock Text="{Binding Name}" FontSize="18" FontWeight="Bold" Margin="2" HorizontalAlignment="Left"/>
+                    <TextBlock Text="{Binding Age}" Margin="2" HorizontalAlignment="Left"/>
                 </StackPanel>
             </Grid>
         </DataTemplate>
-        <DataTemplate x:Name="Detail" x:Key="Detail">
-            <Grid Background="{StaticResource SystemControlAcrylicWindowBrush}" Height="180">
+        <DataTemplate x:Name="Detail" x:Key="Detail" x:DataType="models:Child">
+            <Grid Height="180">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="2*"/>
@@ -31,10 +36,14 @@
                     <RowDefinition Height="60"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <Image Grid.Row="0" Grid.Column="0" Source="{Binding Photo}" HorizontalAlignment="Center" VerticalAlignment="Center" Width="50" Height="50"/>
+                <Ellipse Height="50" Width="50" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <Ellipse.Fill>
+                        <ImageBrush x:Name="Img_ChildThumbnail"  ImageSource="{Binding Photo}"/>
+                    </Ellipse.Fill>
+                </Ellipse>
                 <StackPanel Grid.Row="0" Grid.Column="1" VerticalAlignment="Center">
-                    <TextBlock Text="{Binding Name}" FontSize="18" FontWeight="Bold" Margin="8" HorizontalAlignment="Left"/>
-                    <TextBox Text="{Binding Age}" Margin="8" HorizontalAlignment="Left"/>
+                    <TextBlock Text="{Binding Name}" FontSize="18" FontWeight="Bold" Margin="2" HorizontalAlignment="Left"/>
+                    <TextBox Text="{Binding Age}" Margin="2" HorizontalAlignment="Left"/>
                 </StackPanel>
                 <StackPanel Grid.Row="1" Grid.Column="1">
                     <StackPanel Orientation="Horizontal">
@@ -66,31 +75,46 @@
         </DataTemplate>
     </Page.Resources>
 
-    <ScrollViewer>
-        <Grid>
-            <StackPanel Name="Stk_Form" Margin="8" HorizontalAlignment="Center" MaxWidth="800" MinWidth="400">
-                <TextBlock Text="{Binding Name}" FontSize="24" Margin="8"/>
-                <StackPanel Margin="8" Orientation="Horizontal">
-                    <TextBlock Text="Phone Number: "/>
-                    <TextBlock Margin="4,0,0,0" Text="{Binding PhoneNumber}"/>
+    <Grid>
+        <ScrollViewer x:Name="Scrl_ViewChildContent">
+            <Grid>
+                <StackPanel Name="Stk_Form" Margin="8" HorizontalAlignment="Center" MaxWidth="800" MinWidth="400">
+                    <TextBlock Text="{Binding Name}" FontSize="24" Margin="8"/>
+                    <StackPanel Margin="8" Orientation="Horizontal">
+                        <TextBlock Text="Phone Number: "/>
+                        <TextBlock Margin="4,0,0,0" Text="{Binding PhoneNumber}"/>
+                    </StackPanel>
+                    <StackPanel Margin="8" Orientation="Horizontal">
+                        <TextBlock Text="Address: "/>
+                        <TextBlock Margin="4,0,0,0" Text="{Binding Address}"/>
+                    </StackPanel>
+                    <StackPanel Margin="8" Orientation="Horizontal">
+                        <TextBlock Text="Postcode: "/>
+                        <TextBlock Margin="4,0,0,0" Text="{Binding Postcode}"/>
+                    </StackPanel>
+                    <StackPanel Margin="8" Orientation="Horizontal">
+                        <TextBlock Text="Notes: "/>
+                        <TextBlock Margin="4,0,0,0" MaxLines="10" TextWrapping="WrapWholeWords" Text="{Binding Notes}"/>
+                    </StackPanel>
+                    <TextBlock Margin="8" Text="Children in care"/>
+                    <ListView SelectionChanged="Lst_Children_SelectionChanged" Background="{StaticResource SystemControlAcrylicWindowBrush}" Height="250" x:Name="Lst_Children" ItemTemplate="{StaticResource Normal}"/>
+                    <Button Margin="8" Click="Btn_AddChild_Click" x:Name="Btn_AddChild" HorizontalAlignment="Right" Content="Add Child"/>
                 </StackPanel>
-                <StackPanel Margin="8" Orientation="Horizontal">
-                    <TextBlock Text="Address: "/>
-                    <TextBlock Margin="4,0,0,0" Text="{Binding Address}"/>
-                </StackPanel>
-                <StackPanel Margin="8" Orientation="Horizontal">
-                    <TextBlock Text="Postcode: "/>
-                    <TextBlock Margin="4,0,0,0" Text="{Binding Postcode}"/>
-                </StackPanel>
-                <StackPanel Margin="8" Orientation="Horizontal">
-                    <TextBlock Text="Notes: "/>
-                    <TextBlock Margin="4,0,0,0" MaxLines="10" TextWrapping="WrapWholeWords" Text="{Binding Notes}"/>
-                </StackPanel>
-                <TextBlock Margin="8" Text="Children in care"/>
-                <ListView Background="{StaticResource SystemControlAcrylicWindowBrush}" Height="150" x:Name="Lst_Children" ItemTemplate="{StaticResource Normal}">
-                </ListView>
-                <Button Margin="8" Click="Btn_AddChild_Click" x:Name="Btn_AddChild" HorizontalAlignment="Right" Content="Add Child"/>
-            </StackPanel>
+            </Grid>
+        </ScrollViewer>
+        <Grid Visibility="Collapsed"  Background="{StaticResource SystemControlAcrylicElementMediumHighBrush}" x:Name="Grd_AddChildOverlay">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="500"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="600"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <Button Content="Close" Click="Button_Click" Grid.Column="2" Grid.Row="0"/>
+            <Frame IsNavigationStackEnabled="False" Background="{StaticResource ApplicationPageBackgroundThemeBrush}" Grid.Column="1" Grid.Row="1" x:Name="Frm_AddChildUI" />
         </Grid>
-    </ScrollViewer>
+    </Grid>
 </Page>
