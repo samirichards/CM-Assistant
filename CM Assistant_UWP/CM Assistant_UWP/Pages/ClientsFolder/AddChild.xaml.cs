@@ -56,7 +56,7 @@ namespace CM_Assistant_UWP.Pages.ClientsFolder
                 conn.Commit();
                 ContentDialog dialog = new ContentDialog();
                 dialog.Title = "Success";
-                dialog.Content = ("Successfully added {0} to database as {1}'s child", ChildTemp.Name, conn.Table<Classes.Models.Client>().Where(a => a.ID == ClientID).Single().Name);
+                dialog.Content = ("Successfully added " + ChildTemp.Name + " to database as a child of "+ conn.Table<Classes.Models.Client>().Where(a => a.ID == ClientID).Single().Name);
                 dialog.CloseButtonText = "Okay";
                 dialog.ShowAsync();
                 foreach (var item in Stk_Form.Children.Where(a => a.GetType() == typeof(TextBox)))

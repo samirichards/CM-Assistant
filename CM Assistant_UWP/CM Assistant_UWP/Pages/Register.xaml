@@ -8,7 +8,12 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
-        <TextBlock Text="Attendance Page"/>
-    </Grid>
+    <NavigationView x:Name="Nav_RegList" IsSettingsVisible="False" IsBackButtonVisible="Collapsed" IsBackEnabled="False" ItemInvoked="Nav_RegList_ItemInvoked" SelectionChanged="Nav_RegList_SelectionChanged">
+        <NavigationView.PaneFooter>
+            <StackPanel>
+                <NavigationViewItem x:Name="NavItem_Refresh" Tapped="NavItem_Refresh_Tapped" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Content="Refresh" Icon="Refresh"/>
+            </StackPanel>
+        </NavigationView.PaneFooter>
+        <Frame Grid.Column="1" Background="{StaticResource SystemControlAcrylicWindowBrush}" x:Name="Frm_ChildContent"/>
+    </NavigationView>
 </Page>
