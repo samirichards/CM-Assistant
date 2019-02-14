@@ -48,7 +48,7 @@ namespace CM_Assistant_UWP.Pages.ClientsFolder
                 ChildTemp.DietNotes = Txt_DietNotes.Text;
                 ChildTemp.MedicalNotes = Txt_MedicalNotes.Text;
                 ChildTemp.Notes = Txt_Notes.Text;
-                ChildTemp.Age = DateTimeOffset.Now.Subtract(ChildTemp.DateOfBirth).TotalDays / 365;
+                ChildTemp.Age = Math.Round(DateTimeOffset.Now.Subtract(ChildTemp.DateOfBirth).TotalDays / 365, 0, MidpointRounding.AwayFromZero);
 
                 StorageFolder localFolder = ApplicationData.Current.LocalFolder;
                 SQLiteConnection conn = new SQLiteConnection(localFolder.Path + "\\data.db");

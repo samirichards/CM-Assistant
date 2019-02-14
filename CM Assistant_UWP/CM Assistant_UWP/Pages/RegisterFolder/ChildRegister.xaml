@@ -5,6 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
+    xmlns:ViewModels="using:CM_Assistant_UWP.Classes.Viewmodels"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
@@ -12,28 +13,46 @@
             <Grid>
                 <StackPanel Name="Stk_Form" Margin="8" HorizontalAlignment="Center" MaxWidth="800" MinWidth="400">
                     <TextBlock Text="{Binding Name}" FontSize="24" Margin="8"/>
-                    <StackPanel Margin="8" Orientation="Horizontal">
-                        <TextBlock Text="Phone Number: "/>
-                        <TextBlock Margin="4,0,0,0" Text="{Binding PhoneNumber}"/>
+
+                    <StackPanel Margin="8" HorizontalAlignment="Center">
+                        <CheckBox Content="Custom sign in time" HorizontalAlignment="Center"/>
+                        <TimePicker Header="Sign in time" IsEnabled="False" HorizontalAlignment="Stretch"/>
                     </StackPanel>
-                    <TextBlock Margin="8" Text="Children in care"/>
-                    <Button Margin="8" Click="Btn_AddChild_Click" x:Name="Btn_AddChild" HorizontalAlignment="Right" Content="Add Child"/>
+                    <StackPanel Margin="8" HorizontalAlignment="Center">
+                        <CheckBox Content="Custom sign out time" HorizontalAlignment="Center"/>
+                        <TimePicker Header="Sign out time" IsEnabled="False" HorizontalAlignment="Stretch"/>
+                    </StackPanel>
+                    <StackPanel Margin="8">
+                        <TextBlock FontSize="14" Text="Currrent Session time: " HorizontalAlignment="Center"/>
+                        <TextBlock FontSize="14" Text="Current projected pay: " HorizontalAlignment="Center"/>
+                    </StackPanel>
+                    <Grid Margin="8">
+                        <Button Content="Sign in" HorizontalAlignment="Left"/>
+                        <Button Content="Sign out" HorizontalAlignment="Right"/>
+                    </Grid>
+
+                    <TextBlock Margin="4" Text="Expected Times"/>
+                    <ListView x:Name="Lst_ExpectedTimes" Height="350" Background="{StaticResource SystemControlAcrylicWindowMediumHighBrush}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate x:DataType="ViewModels:ChildRegDisplay">
+                                <StackPanel Orientation="Horizontal">
+                                    <StackPanel VerticalAlignment="Center">
+                                        <TextBlock Text="{Binding ChildName}" Margin="2" FontSize="14" FontWeight="Bold"/>
+                                        <StackPanel Margin="2"  Orientation="Horizontal" HorizontalAlignment="Left">
+                                            <TextBlock Margin="0,0,2,0" Text="{Binding DayToBePresent}" FontWeight="Bold"/>
+                                            <TextBlock Text="{Binding StartTime}"/>
+                                            <TextBlock Text="-"/>
+                                            <TextBlock Text="{Binding EndTime}"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                    <TextBlock Text="{Binding TimeSpent}"/>
+                                    <TextBlock Text="{Binding MoneyToEarn}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
                 </StackPanel>
             </Grid>
         </ScrollViewer>
-        <Grid Visibility="Collapsed"  Background="{StaticResource SystemControlAcrylicElementMediumHighBrush}" x:Name="Grd_AddChildOverlay">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="500"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="600"/>
-                <RowDefinition Height="1*"/>
-            </Grid.RowDefinitions>
-            <Button Content="Close" Click="Button_Click" Grid.Column="2" Grid.Row="0"/>
-            <Frame IsNavigationStackEnabled="False" Background="{StaticResource ApplicationPageBackgroundThemeBrush}" Grid.Column="1" Grid.Row="1" x:Name="Frm_AddChildUI" />
-        </Grid>
     </Grid>
 </Page>

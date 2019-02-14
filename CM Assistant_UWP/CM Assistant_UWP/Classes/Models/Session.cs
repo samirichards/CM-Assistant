@@ -13,8 +13,8 @@ namespace CM_Assistant_UWP.Classes.Models
         [AutoIncrement, PrimaryKey]
         public int SessionID { get; set; }
         public int ChildID { get; set; }
-        public DateTime Start { get; set; }
-        public DateTime End { get; set; }
+        public DateTimeOffset Start { get; set; }
+        public DateTimeOffset ?End { get; set; }
         public bool SessionOpen { get; set; }
     }
 }

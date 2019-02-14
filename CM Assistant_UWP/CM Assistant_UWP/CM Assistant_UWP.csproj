@@ -127,9 +127,11 @@
     <Compile Include="Classes\Models\Session.cs" />
     <Compile Include="Classes\Models\TimeSlot.cs" />
     <Compile Include="Classes\Models\Transaction.cs" />
+    <Compile Include="Classes\Utilities\ChildAttendance.cs" />
     <Compile Include="Classes\Utilities\Security.cs" />
     <Compile Include="Classes\Utilities\StartUpChecks.cs" />
     <Compile Include="Classes\Viewmodels\ChildQuickAccess.cs" />
+    <Compile Include="Classes\Viewmodels\ChildRegDisplay.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
