@@ -88,7 +88,7 @@ namespace CM_Assistant_UWP.Pages.ClientsFolder
             if (file != null)
             {
                 ChildTemp.Photo = await GetBytesAsync(file);
-                await UpdateContextAsync();
+                UpdateContext();
             }
         }
 
@@ -110,18 +110,10 @@ namespace CM_Assistant_UWP.Pages.ClientsFolder
             ChildTemp.ParentID = ClientID;
         }
 
-        private async Task UpdateContextAsync()
+        private void UpdateContext()
         {
             DataContext = ChildTemp;
-            BitmapImage biSource = new BitmapImage();
-            using (InMemoryRandomAccessStream stream = new InMemoryRandomAccessStream())
-            {
-                await stream.WriteAsync(ChildTemp.Photo.AsBuffer());
-                stream.Seek(0);
-                await biSource.SetSourceAsync(stream);
-            }
-
-            Img_ChildPhoto.Source = biSource;
+            Img_ChildPhoto.Source = Classes.Utilities.ImageManipulation.ImageFromByteArray(ChildTemp.Photo);
         }
 
         public static async Task<byte[]> GetBytesAsync(StorageFile file)

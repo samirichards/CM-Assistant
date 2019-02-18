@@ -53,6 +53,8 @@ namespace CM_Assistant_UWP.Pages.ClientsFolder
                 conn.Insert(client);
                 conn.Commit();
                 conn.Close();
+
+                //Need to finish adding logic here which closes the add client screen and refreshes the list of clients
             }
             else
             {

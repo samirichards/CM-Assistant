@@ -51,7 +51,6 @@ namespace CM_Assistant_UWP.Pages
             SQLiteConnection conn = new SQLiteConnection(localFolder.Path + "\\data.db");
 
             Nav_RegList.MenuItems.Clear();
-            List<NavigationViewItem> navigationViewItems = new List<NavigationViewItem>();
 
             if (conn.Table<Classes.Models.Session>().Select(a => a.SessionOpen).Contains(true))
             {
