@@ -54,7 +54,9 @@ namespace CM_Assistant_UWP.Pages.ClientsFolder
                 conn.Commit();
                 conn.Close();
 
-                //Need to finish adding logic here which closes the add client screen and refreshes the list of clients
+                ((Button)sender).IsEnabled = false;
+                ((Clients)((NavigationView)((Frame)Parent).Parent).Parent).RefreshClients();
+                ((Frame)Parent).Content = null;
             }
             else
             {
