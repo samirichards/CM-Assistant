@@ -73,20 +73,23 @@ namespace CM_Assistant_UWP.Pages
                 {
                     try
                     {
-                        NavigationViewItemHeader header = new NavigationViewItemHeader
+                        if (conn.Table<Classes.Models.Client>().Where(a=> a.ID == i).Single().Deleted != true)
                         {
-                            Content = conn.Table<Classes.Models.Client>().Where(a => a.ID == i).Single().Name
-                        };
-                        Nav_RegList.MenuItems.Add(header);
-                        foreach (Classes.Models.Child item in conn.Table<Classes.Models.Child>().Where(a => a.ParentID == i))
-                        {
-                            NavigationViewItem navigationViewItem = new NavigationViewItem
+                            NavigationViewItemHeader header = new NavigationViewItemHeader
                             {
-                                Content = item.Name,
-                                Icon = new SymbolIcon(Symbol.Account),
-                                Tag = item.ID
+                                Content = conn.Table<Classes.Models.Client>().Where(a => a.ID == i).Single().Name
                             };
-                            Nav_RegList.MenuItems.Add(navigationViewItem);
+                            Nav_RegList.MenuItems.Add(header);
+                            foreach (Classes.Models.Child item in conn.Table<Classes.Models.Child>().Where(a => a.ParentID == i))
+                            {
+                                NavigationViewItem navigationViewItem = new NavigationViewItem
+                                {
+                                    Content = item.Name,
+                                    Icon = new SymbolIcon(Symbol.Account),
+                                    Tag = item.ID
+                                };
+                                Nav_RegList.MenuItems.Add(navigationViewItem);
+                            }
                         }
                     }
                     catch (Exception)
@@ -100,7 +103,7 @@ namespace CM_Assistant_UWP.Pages
             catch (Exception)
             {
                 NavigationViewItemHeader header = new NavigationViewItemHeader();
-                header.Content = "No Children yet";
+                header.Content = "No Children to show";
                 Nav_RegList.MenuItems.Add(header);
             }
             

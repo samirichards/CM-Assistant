@@ -37,17 +37,17 @@ namespace CM_Assistant_UWP.Pages
             Windows.Storage.StorageFolder localFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
             SQLiteConnection conn = new SQLiteConnection(localFolder.Path + "\\data.db");
             Nav_ClientList.MenuItems.Clear();
-            if (!(conn.Table<Classes.Models.Client>().Count() > 0))
+            if (!(conn.Table<Classes.Models.Client>().Where(a=>a.Deleted != true).Count() > 0))
             {
                 NavigationViewItemHeader header = new NavigationViewItemHeader();
-                header.Content = "No Clients yet";
+                header.Content = "No Clients to show";
                 Nav_ClientList.MenuItems.Add(header);
                 Nav_ClientList.SelectedItem = null;
             }
             else
             {
                 List<NavigationViewItem> navigationViewItems = new List<NavigationViewItem>();
-                foreach (Classes.Models.Client item in conn.Table<Classes.Models.Client>())
+                foreach (Classes.Models.Client item in conn.Table<Classes.Models.Client>().Where(a=> a.Deleted != true))
                 {
                     NavigationViewItem navigationViewItem = new NavigationViewItem
                     {

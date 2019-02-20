@@ -48,6 +48,7 @@ namespace CM_Assistant_UWP.Pages.ClientsFolder
                     Postcode = Txt_Postcode.Text,
                     Address = Txt_Address.Text,
                     Notes = Txt_Notes.Text,
+                    Deleted = false
                 };
                 client.Name = client.FirstName + " " + client.LastName;
                 conn.Insert(client);

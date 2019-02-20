@@ -24,6 +24,7 @@ namespace CM_Assistant_UWP.Pages.ClientsFolder
     /// </summary>
     public sealed partial class EditClient : Page
     {
+        string childList;
         public int ClientID { get; set; }
         public EditClient()
         {
@@ -95,18 +96,25 @@ namespace CM_Assistant_UWP.Pages.ClientsFolder
 
             ContentDialog dialog = new ContentDialog();
             dialog.Title = "Confirm";
-            dialog.Content = "Are you sure you wish to delete " + client.Name + "?" + Environment.NewLine + "All children of this client will also be removed";
+            childList = null;
+            if (conn.Table<Classes.Models.Child>().Where(a => a.ParentID == ClientID).Count() > 0)
+            {
+                foreach (var item in conn.Table<Classes.Models.Child>().Where(a => a.ParentID == ClientID))
+                {
+                    childList = childList + item.Name + Environment.NewLine;
+                }
+                dialog.Content = "Are you sure you want to delete " + client.Name + "?" + Environment.NewLine + "The following children will also be removed:" + Environment.NewLine + childList;
+            }
+            else
+            {
+                dialog.Content = "Are you sure you want to delete " + client.Name + "?";
+            }
             dialog.PrimaryButtonText = "Yes";
             dialog.IsPrimaryButtonEnabled = true;
             dialog.PrimaryButtonClick += (ContentDialog, args) =>
             {
-
-                foreach (var item in conn.Table<Classes.Models.Child>().Where(a=> a.ParentID == client.ID))
-                {
-                    conn.Delete(item);
-                }
-
-                conn.Delete(client);
+                client.Deleted = true;
+                conn.Update(client);
                 conn.Commit();
                 ((Clients)((NavigationView)((Frame)Parent).Parent).Parent).RefreshClients();
                 ((Frame)Parent).Content = null;

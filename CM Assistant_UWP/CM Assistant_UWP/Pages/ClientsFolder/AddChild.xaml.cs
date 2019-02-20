@@ -24,7 +24,7 @@ using Windows.UI.Xaml.Navigation;
 namespace CM_Assistant_UWP.Pages.ClientsFolder
 {
     /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
+    /// Page which handles the addition of a new child to the db which is associated with a parent
     /// </summary>
     public sealed partial class AddChild : Page
     {
@@ -43,8 +43,17 @@ namespace CM_Assistant_UWP.Pages.ClientsFolder
                 ChildTemp.FirstName = Txt_FirstNameInput.Text;
                 ChildTemp.LastName = Txt_LastNameInput.Text;
                 ChildTemp.Name = ChildTemp.FirstName + " " + ChildTemp.LastName;
-                ChildTemp.Rate = int.Parse(Txt_Rate.Text);
-                ChildTemp.AltRate = int.Parse(Txt_AltRate.Text);
+                if ((bool)Chk_FixedSessionModifier.IsChecked)
+                {
+                    ChildTemp.FixedRate = true;
+                    ChildTemp.Rate = double.Parse(Txt_FixedRate.Text);
+                }
+                else
+                {
+                    ChildTemp.FixedRate = false;
+                    ChildTemp.Rate = double.Parse(Txt_Rate.Text);
+                    ChildTemp.AltRate = double.Parse(Txt_AltRate.Text);
+                }
                 ChildTemp.DateOfBirth = DateP_DOB_Input.SelectedDate.Value;
                 ChildTemp.DietNotes = Txt_DietNotes.Text;
                 ChildTemp.MedicalNotes = Txt_MedicalNotes.Text;
@@ -97,13 +106,27 @@ namespace CM_Assistant_UWP.Pages.ClientsFolder
 
         private bool IsFormValid()
         {
-            if (Txt_FirstNameInput.Text == string.Empty || Txt_LastNameInput.Text == string.Empty || Txt_Rate.Text == string.Empty || Txt_AltRate.Text == string.Empty)
+            if (!(bool)Chk_FixedSessionModifier.IsChecked)
             {
-                return false;
+                if (Txt_FirstNameInput.Text == string.Empty || Txt_LastNameInput.Text == string.Empty || Txt_Rate.Text == string.Empty || Txt_AltRate.Text == string.Empty)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
             }
             else
             {
-                return true;
+                if (Txt_FirstNameInput.Text == string.Empty || Txt_LastNameInput.Text == string.Empty || Txt_FixedRate.Text == string.Empty)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
             }
         }
 
@@ -133,6 +156,22 @@ namespace CM_Assistant_UWP.Pages.ClientsFolder
                 }
             }
             return fileBytes;
+        }
+
+        private void Chk_FixedSessionModifier_Click(object sender, RoutedEventArgs e)
+        {
+            if ((bool)((CheckBox)sender).IsChecked)
+            {
+                Txt_Rate.IsEnabled = false;
+                Txt_AltRate.IsEnabled = false;
+                Txt_FixedRate.IsEnabled = true;
+            }
+            else
+            {
+                Txt_Rate.IsEnabled = true;
+                Txt_AltRate.IsEnabled = true;
+                Txt_FixedRate.IsEnabled = false;
+            }
         }
     }
 }

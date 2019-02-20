@@ -16,5 +16,6 @@ namespace CM_Assistant_UWP.Classes.Models
         public string Postcode { get; set; }
         public string PhoneNumber { get; set; }
         public string Notes { get; set; }
+        public bool Deleted { get; set; }
     }
 }

@@ -17,7 +17,11 @@
                     <TextBox PlaceholderText="*First Name" x:Name="Txt_FirstNameInput" Margin="8" VerticalAlignment="Center"/>
                     <TextBox PlaceholderText="*Last Name" x:Name="Txt_LastNameInput" Margin="8" VerticalAlignment="Center"/>
                     <DatePicker HorizontalAlignment="Stretch" x:Name="DateP_DOB_Input" Margin="8" Header="Date of Birth*" />
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                        <CheckBox x:Name="Chk_FixedSessionModifier" Content="Fixed rate per session" Margin="8" Click="Chk_FixedSessionModifier_Click"/>
+                        <TextBox x:Name="Txt_FixedRate" PlaceholderText="Rate per session*" Margin="8" IsEnabled="False"/>
+                    </StackPanel>
+                    <StackPanel x:Name="Stk_Rates" Orientation="Horizontal" HorizontalAlignment="Center">
                         <TextBox PlaceholderText="Main Rate*" x:Name="Txt_Rate" TextWrapping="Wrap" Margin="8"/>
                         <TextBox PlaceholderText="Out of hours Rate*" x:Name="Txt_AltRate" TextWrapping="Wrap" Margin="8"/>
                     </StackPanel>
