@@ -98,23 +98,10 @@
                     </StackPanel>
                     <TextBlock Margin="8" Text="Children in care"/>
                     <ListView SelectionChanged="Lst_Children_SelectionChanged" Background="{StaticResource SystemControlAcrylicWindowBrush}" Height="250" x:Name="Lst_Children" ItemTemplate="{StaticResource Normal}"/>
-                    <Button Margin="8" Click="Btn_AddChild_Click" x:Name="Btn_AddChild" HorizontalAlignment="Right" Content="Add Child"/>
+                    <Button Margin="8" Click="Btn_EditClient_Click" x:Name="Btn_EditClient" HorizontalAlignment="Right" Content="Edit Client"/>
                 </StackPanel>
             </Grid>
         </ScrollViewer>
-        <Grid Visibility="Collapsed"  Background="{StaticResource SystemControlAcrylicElementMediumHighBrush}" x:Name="Grd_AddChildOverlay">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="500"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="600"/>
-                <RowDefinition Height="1*"/>
-            </Grid.RowDefinitions>
-            <Button Content="Close" Click="Button_Click" Grid.Column="2" Grid.Row="0"/>
-            <Frame IsNavigationStackEnabled="False" Background="{StaticResource ApplicationPageBackgroundThemeBrush}" Grid.Column="1" Grid.Row="1" x:Name="Frm_AddChildUI" />
-        </Grid>
+
     </Grid>
 </Page>

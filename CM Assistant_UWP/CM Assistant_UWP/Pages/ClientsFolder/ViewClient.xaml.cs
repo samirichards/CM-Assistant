@@ -46,21 +46,14 @@ namespace CM_Assistant_UWP.Pages.ClientsFolder
             //This method needs finishing
         }
 
-        private void Btn_AddChild_Click(object sender, RoutedEventArgs e)
-        {
-            Grd_AddChildOverlay.Visibility = Visibility.Visible;
-            Frm_AddChildUI.Navigate(typeof(AddChild), ClientID, new DrillInNavigationTransitionInfo());
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            Frm_AddChildUI.Content = null;
-            Grd_AddChildOverlay.Visibility = Visibility.Collapsed;
-        }
-
         private void Lst_Children_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+
+        private void Btn_EditClient_Click(object sender, RoutedEventArgs e)
+        {
+            ((Frame)Parent).Navigate(typeof(EditClient), ClientID, new DrillInNavigationTransitionInfo());
         }
     }
 }

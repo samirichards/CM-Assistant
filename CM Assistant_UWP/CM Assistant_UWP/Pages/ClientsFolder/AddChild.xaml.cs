@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
@@ -54,6 +55,8 @@ namespace CM_Assistant_UWP.Pages.ClientsFolder
                 SQLiteConnection conn = new SQLiteConnection(localFolder.Path + "\\data.db");
                 conn.Insert(ChildTemp);
                 conn.Commit();
+                ((Button)sender).IsEnabled = false;
+                ((Frame)Parent).Navigate(typeof(ViewClient), ClientID.ToString(), new DrillInNavigationTransitionInfo());
                 ContentDialog dialog = new ContentDialog();
                 dialog.Title = "Success";
                 dialog.Content = ("Successfully added " + ChildTemp.Name + " to database as a child of "+ conn.Table<Classes.Models.Client>().Where(a => a.ID == ClientID).Single().Name);

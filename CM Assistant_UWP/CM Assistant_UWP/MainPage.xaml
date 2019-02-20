@@ -32,7 +32,7 @@
                     <SymbolIcon Symbol="Contact"/>
                 </NavigationViewItem.Icon>
             </NavigationViewItem>
-            <NavigationViewItem Content="Children" Tag="Children">
+            <NavigationViewItem Content="Register" Tag="Register">
                 <NavigationViewItem.Icon>
                     <SymbolIcon Symbol="People"/>
                 </NavigationViewItem.Icon>

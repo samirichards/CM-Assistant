@@ -16,6 +16,7 @@ namespace CM_Assistant_UWP.Classes.Utilities
             foreach (var item in conn.Table<Models.Child>())
             {
                 item.Age = Math.Floor(DateTimeOffset.Now.Subtract(item.DateOfBirth).TotalDays / 365);
+                conn.Update(item);
             }
             conn.Commit();
         }

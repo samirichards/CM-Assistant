@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SQLite;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -11,6 +12,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
@@ -22,9 +24,95 @@ namespace CM_Assistant_UWP.Pages.ClientsFolder
     /// </summary>
     public sealed partial class EditClient : Page
     {
+        public int ClientID { get; set; }
         public EditClient()
         {
             this.InitializeComponent();
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            ClientID = int.Parse(e.Parameter.ToString());
+            UpdatePage();
+        }
+
+        public void UpdatePage()
+        {
+            Windows.Storage.StorageFolder localFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
+            SQLiteConnection conn = new SQLiteConnection(localFolder.Path + "\\data.db");
+            DataContext = conn.Table<Classes.Models.Client>().Where(a => a.ID == ClientID).Single();
+            Lst_Children.ItemsSource = conn.Table<Classes.Models.Child>().Where(a => a.ParentID == ClientID);
+            //This method needs finishing
+        }
+
+        private void Btn_AddChild_Click(object sender, RoutedEventArgs e)
+        {
+            Grd_AddChildOverlay.Visibility = Visibility.Visible;
+            Frm_AddChildUI.Navigate(typeof(AddChild), ClientID, new DrillInNavigationTransitionInfo());
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Frm_AddChildUI.Content = null;
+            Grd_AddChildOverlay.Visibility = Visibility.Collapsed;
+
+        }
+
+        private void Lst_Children_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void Btn_SaveChanges_Click(object sender, RoutedEventArgs e)
+        {
+            Windows.Storage.StorageFolder localFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
+            SQLiteConnection conn = new SQLiteConnection(localFolder.Path + "\\data.db");
+            Classes.Models.Client client = conn.Table<Classes.Models.Client>().Where(a => a.ID == ClientID).Single();
+            client.FirstName = Txt_FirstName.Text;
+            client.LastName = Txt_LastName.Text;
+            client.Name = client.FirstName + " " + client.LastName;
+            client.PhoneNumber = Txt_PhoneNumber.Text;
+            client.Postcode = Txt_Postcode.Text;
+            client.Notes = Txt_Notes.Text;
+
+            conn.Update(client);
+            conn.Commit();
+            conn.Close();
+
+            ((Frame)Parent).Navigate(typeof(ViewClient), ClientID, new DrillInNavigationTransitionInfo());
+        }
+
+        private void Btn_DiscardChanges_Click(object sender, RoutedEventArgs e)
+        {
+            ((Frame)Parent).Navigate(typeof(ViewClient), ClientID, new DrillInNavigationTransitionInfo());
+        }
+
+        private void Btn_DeleteClient_Click(object sender, RoutedEventArgs e)
+        {
+            Windows.Storage.StorageFolder localFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
+            SQLiteConnection conn = new SQLiteConnection(localFolder.Path + "\\data.db");
+            Classes.Models.Client client = conn.Table<Classes.Models.Client>().Where(a => a.ID == ClientID).Single();
+
+            ContentDialog dialog = new ContentDialog();
+            dialog.Title = "Confirm";
+            dialog.Content = "Are you sure you wish to delete " + client.Name + "?" + Environment.NewLine + "All children of this client will also be removed";
+            dialog.PrimaryButtonText = "Yes";
+            dialog.IsPrimaryButtonEnabled = true;
+            dialog.PrimaryButtonClick += (ContentDialog, args) =>
+            {
+
+                foreach (var item in conn.Table<Classes.Models.Child>().Where(a=> a.ParentID == client.ID))
+                {
+                    conn.Delete(item);
+                }
+
+                conn.Delete(client);
+                conn.Commit();
+                ((Clients)((NavigationView)((Frame)Parent).Parent).Parent).RefreshClients();
+                ((Frame)Parent).Content = null;
+            };
+            dialog.CloseButtonText = "No";
+            dialog.ShowAsync();
         }
     }
 }

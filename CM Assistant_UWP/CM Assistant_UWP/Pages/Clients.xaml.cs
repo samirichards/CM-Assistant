@@ -36,20 +36,31 @@ namespace CM_Assistant_UWP.Pages
         {
             Windows.Storage.StorageFolder localFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
             SQLiteConnection conn = new SQLiteConnection(localFolder.Path + "\\data.db");
-
-            List<NavigationViewItem> navigationViewItems = new List<NavigationViewItem>();
-            foreach (Classes.Models.Client item in conn.Table<Classes.Models.Client>())
+            Nav_ClientList.MenuItems.Clear();
+            if (!(conn.Table<Classes.Models.Client>().Count() > 0))
             {
-                NavigationViewItem navigationViewItem = new NavigationViewItem
-                {
-                    Content = item.Name,
-                    Icon = new SymbolIcon(Symbol.Account),
-                    Tag = item.ID
-                };
-                navigationViewItems.Add(navigationViewItem);
+                NavigationViewItemHeader header = new NavigationViewItemHeader();
+                header.Content = "No Clients yet";
+                Nav_ClientList.MenuItems.Add(header);
+                Nav_ClientList.SelectedItem = null;
             }
+            else
+            {
+                List<NavigationViewItem> navigationViewItems = new List<NavigationViewItem>();
+                foreach (Classes.Models.Client item in conn.Table<Classes.Models.Client>())
+                {
+                    NavigationViewItem navigationViewItem = new NavigationViewItem
+                    {
+                        Content = item.Name,
+                        Icon = new SymbolIcon(Symbol.Account),
+                        Tag = item.ID
+                    };
+                    navigationViewItems.Add(navigationViewItem);
+                }
+                Nav_ClientList.MenuItemsSource = navigationViewItems;
+            }
+
             conn.Close();
-            Nav_ClientList.MenuItemsSource = navigationViewItems;
         }
 
         private void NavigationViewItem_Tapped(object sender, TappedRoutedEventArgs e)
@@ -59,12 +70,18 @@ namespace CM_Assistant_UWP.Pages
 
         private void Nav_ClientList_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
         {
-            Frm_ClientContent.Navigate(typeof(ClientsFolder.ViewClient), args.InvokedItemContainer.Tag, new DrillInNavigationTransitionInfo());
+            if (args.InvokedItemContainer.Tag != null)
+            {
+                Frm_ClientContent.Navigate(typeof(ClientsFolder.ViewClient), args.InvokedItemContainer.Tag, new DrillInNavigationTransitionInfo());
+            }
         }
 
         private void Nav_ClientList_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
         {
-            Frm_ClientContent.Navigate(typeof(ClientsFolder.ViewClient), ((NavigationViewItem)args.SelectedItem).Tag, new DrillInNavigationTransitionInfo());
+            if (args.SelectedItem != null)
+            {
+                Frm_ClientContent.Navigate(typeof(ClientsFolder.ViewClient), ((NavigationViewItem)args.SelectedItem).Tag, new DrillInNavigationTransitionInfo());
+            }
         }
 
         private void NavItem_Refresh_Tapped(object sender, TappedRoutedEventArgs e)

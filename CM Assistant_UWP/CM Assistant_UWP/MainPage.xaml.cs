@@ -57,7 +57,7 @@ namespace CM_Assistant_UWP
                 case "Clients":
                     Frm_ContentFrame.Navigate(typeof(Pages.Clients), null, new DrillInNavigationTransitionInfo());
                     break;
-                case "Children":
+                case "Register":
                     Frm_ContentFrame.Navigate(typeof(Pages.Register), null, new DrillInNavigationTransitionInfo());
                     break;
                 case "Income/Outgoings":
@@ -84,7 +84,7 @@ namespace CM_Assistant_UWP
                 case "Clients":
                     Frm_ContentFrame.Navigate(typeof(Pages.Clients), null, new DrillInNavigationTransitionInfo());
                     break;
-                case "Children":
+                case "Register":
                     Frm_ContentFrame.Navigate(typeof(Pages.Register), null, new DrillInNavigationTransitionInfo());
                     break;
                 case "Proceeds":
