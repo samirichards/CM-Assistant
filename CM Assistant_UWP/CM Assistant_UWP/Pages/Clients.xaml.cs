@@ -39,8 +39,10 @@ namespace CM_Assistant_UWP.Pages
             Nav_ClientList.MenuItems.Clear();
             if (!(conn.Table<Classes.Models.Client>().Where(a=>a.Deleted != true).Count() > 0))
             {
-                NavigationViewItemHeader header = new NavigationViewItemHeader();
-                header.Content = "No Clients to show";
+                NavigationViewItemHeader header = new NavigationViewItemHeader
+                {
+                    Content = "No Clients to show"
+                };
                 Nav_ClientList.MenuItems.Add(header);
                 Nav_ClientList.SelectedItem = null;
             }

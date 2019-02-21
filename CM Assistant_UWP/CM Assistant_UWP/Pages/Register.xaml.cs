@@ -68,33 +68,44 @@ namespace CM_Assistant_UWP.Pages
             SQLiteCommand command = new SQLiteCommand(conn);
             try
             {
-                command.CommandText = "SELECT MAX(ParentID) FROM Child";
-                for (int i = 1; i <= int.Parse(command.ExecuteScalar<string>()); i++)
+                if (conn.Table<Classes.Models.Child>().Count() == 0 || !(conn.Table<Classes.Models.Client>().Select(a=> a.Deleted).Contains(false)))
                 {
-                    try
+                    NavigationViewItemHeader header = new NavigationViewItemHeader
                     {
-                        if (conn.Table<Classes.Models.Client>().Where(a=> a.ID == i).Single().Deleted != true)
+                        Content = "No Children to show" + Environment.NewLine + "You can add children on the clients screen"
+                    };
+                    Nav_RegList.MenuItems.Add(header);
+                }
+                else
+                {
+                    command.CommandText = "SELECT MAX(ParentID) FROM Child";
+                    for (int i = 1; i <= int.Parse(command.ExecuteScalar<string>()); i++)
+                    {
+                        try
                         {
-                            NavigationViewItemHeader header = new NavigationViewItemHeader
+                            if (conn.Table<Classes.Models.Client>().Where(a => a.ID == i).Single().Deleted != true)
                             {
-                                Content = conn.Table<Classes.Models.Client>().Where(a => a.ID == i).Single().Name
-                            };
-                            Nav_RegList.MenuItems.Add(header);
-                            foreach (Classes.Models.Child item in conn.Table<Classes.Models.Child>().Where(a => a.ParentID == i))
-                            {
-                                NavigationViewItem navigationViewItem = new NavigationViewItem
+                                NavigationViewItemHeader header = new NavigationViewItemHeader
                                 {
-                                    Content = item.Name,
-                                    Icon = new SymbolIcon(Symbol.Account),
-                                    Tag = item.ID
+                                    Content = conn.Table<Classes.Models.Client>().Where(a => a.ID == i).Single().Name
                                 };
-                                Nav_RegList.MenuItems.Add(navigationViewItem);
+                                Nav_RegList.MenuItems.Add(header);
+                                foreach (Classes.Models.Child item in conn.Table<Classes.Models.Child>().Where(a => a.ParentID == i))
+                                {
+                                    NavigationViewItem navigationViewItem = new NavigationViewItem
+                                    {
+                                        Content = item.Name,
+                                        Icon = new SymbolIcon(Symbol.Account),
+                                        Tag = item.ID
+                                    };
+                                    Nav_RegList.MenuItems.Add(navigationViewItem);
+                                }
                             }
                         }
-                    }
-                    catch (Exception)
-                    {
+                        catch (Exception)
+                        {
 
+                        }
                     }
                 }
                 conn.Close();
@@ -102,8 +113,10 @@ namespace CM_Assistant_UWP.Pages
 
             catch (Exception)
             {
-                NavigationViewItemHeader header = new NavigationViewItemHeader();
-                header.Content = "No Children to show";
+                NavigationViewItemHeader header = new NavigationViewItemHeader
+                {
+                    Content = "No Children to show"
+                };
                 Nav_RegList.MenuItems.Add(header);
             }
             

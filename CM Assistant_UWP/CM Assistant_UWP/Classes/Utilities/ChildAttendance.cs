@@ -25,8 +25,10 @@ namespace CM_Assistant_UWP.Classes.Utilities
             };
             conn.Insert(session);
             conn.Commit();
-            SQLiteCommand command = new SQLiteCommand(conn);
-            command.CommandText = "SELECT last_insert_rowid()";
+            SQLiteCommand command = new SQLiteCommand(conn)
+            {
+                CommandText = "SELECT last_insert_rowid()"
+            };
             return command.ExecuteScalar<int>();
         }
 

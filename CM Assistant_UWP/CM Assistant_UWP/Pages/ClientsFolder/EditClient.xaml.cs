@@ -94,8 +94,10 @@ namespace CM_Assistant_UWP.Pages.ClientsFolder
             SQLiteConnection conn = new SQLiteConnection(localFolder.Path + "\\data.db");
             Classes.Models.Client client = conn.Table<Classes.Models.Client>().Where(a => a.ID == ClientID).Single();
 
-            ContentDialog dialog = new ContentDialog();
-            dialog.Title = "Confirm";
+            ContentDialog dialog = new ContentDialog
+            {
+                Title = "Confirm"
+            };
             childList = null;
             if (conn.Table<Classes.Models.Child>().Where(a => a.ParentID == ClientID).Count() > 0)
             {

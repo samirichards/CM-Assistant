@@ -66,10 +66,12 @@ namespace CM_Assistant_UWP.Pages.ClientsFolder
                 conn.Commit();
                 ((Button)sender).IsEnabled = false;
                 ((Frame)Parent).Navigate(typeof(ViewClient), ClientID.ToString(), new DrillInNavigationTransitionInfo());
-                ContentDialog dialog = new ContentDialog();
-                dialog.Title = "Success";
-                dialog.Content = ("Successfully added " + ChildTemp.Name + " to database as a child of "+ conn.Table<Classes.Models.Client>().Where(a => a.ID == ClientID).Single().Name);
-                dialog.CloseButtonText = "Okay";
+                ContentDialog dialog = new ContentDialog
+                {
+                    Title = "Success",
+                    Content = ("Successfully added " + ChildTemp.Name + " to database as a child of " + conn.Table<Classes.Models.Client>().Where(a => a.ID == ClientID).Single().Name),
+                    CloseButtonText = "Okay"
+                };
                 dialog.ShowAsync();
                 foreach (var item in Stk_Form.Children.Where(a => a.GetType() == typeof(TextBox)))
                 {
@@ -79,19 +81,23 @@ namespace CM_Assistant_UWP.Pages.ClientsFolder
             }
             else
             {
-                ContentDialog dialog = new ContentDialog();
-                dialog.Title = "Error";
-                dialog.Content = "There are empty required fields";
-                dialog.CloseButtonText = "Okay";
+                ContentDialog dialog = new ContentDialog
+                {
+                    Title = "Error",
+                    Content = "There are empty required fields",
+                    CloseButtonText = "Okay"
+                };
                 dialog.ShowAsync();
             }
         }
 
         private async void Btn_EditPhoto_ClickAsync(object sender, RoutedEventArgs e)
         {
-            var picker = new Windows.Storage.Pickers.FileOpenPicker();
-            picker.ViewMode = Windows.Storage.Pickers.PickerViewMode.Thumbnail;
-            picker.SuggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.PicturesLibrary;
+            var picker = new Windows.Storage.Pickers.FileOpenPicker
+            {
+                ViewMode = Windows.Storage.Pickers.PickerViewMode.Thumbnail,
+                SuggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.PicturesLibrary
+            };
             picker.FileTypeFilter.Add(".jpg");
             picker.FileTypeFilter.Add(".jpeg");
             picker.FileTypeFilter.Add(".png");
