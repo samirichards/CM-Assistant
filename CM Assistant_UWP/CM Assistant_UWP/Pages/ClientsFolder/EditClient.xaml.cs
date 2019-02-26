@@ -43,7 +43,6 @@ namespace CM_Assistant_UWP.Pages.ClientsFolder
             SQLiteConnection conn = new SQLiteConnection(localFolder.Path + "\\data.db");
             DataContext = conn.Table<Classes.Models.Client>().Where(a => a.ID == ClientID).Single();
             Lst_Children.ItemsSource = conn.Table<Classes.Models.Child>().Where(a => a.ParentID == ClientID);
-            //This method needs finishing
         }
 
         private void Btn_AddChild_Click(object sender, RoutedEventArgs e)

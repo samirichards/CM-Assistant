@@ -49,15 +49,15 @@
                     </StackPanel>
                     <StackPanel Margin="8">
                         <TextBlock Text="Medical Notes "/>
-                        <TextBox x:Name="Txt_MedicalNotes" Margin="8,0,0,0" Text="{Binding MedicalNotes}"/>
+                        <TextBox x:Name="Txt_MedicalNotes" AcceptsReturn="True" Margin="8,0,0,0" Text="{Binding MedicalNotes}"/>
                     </StackPanel>
                     <StackPanel Margin="8">
                         <TextBlock Text="Diet Notes: "/>
-                        <TextBox x:Name="Txt_DietNotes" Margin="8,0,0,0" Text="{Binding DietNotes}"/>
+                        <TextBox x:Name="Txt_DietNotes" AcceptsReturn="True" Margin="8,0,0,0" Text="{Binding DietNotes}"/>
                     </StackPanel>
                     <StackPanel Margin="8">
                         <TextBlock Text="Notes: "/>
-                        <TextBox x:Name="Txt_Notes" Margin="8,0,0,0" Text="{Binding Notes}"/>
+                        <TextBox AcceptsReturn="True" x:Name="Txt_Notes" Margin="8,0,0,0" Text="{Binding Notes}"/>
                     </StackPanel>
                     <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
                         <Button x:Name="Btn_SaveChanges" Margin="8" Content="Save Changes" Click="Btn_SaveChanges_Click"/>
