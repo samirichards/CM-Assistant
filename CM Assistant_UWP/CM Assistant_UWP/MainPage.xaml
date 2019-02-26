@@ -10,39 +10,7 @@
     xmlns:oxy="using:OxyPlot.Windows"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <NavigationView x:Name="Nav_MainNavView"
-        IsBackButtonVisible="Collapsed"
-        PaneDisplayMode="Top" Loaded="Nav_MainNavView_Loaded" ItemInvoked="Nav_MainNavView_ItemInvoked" SelectionChanged="Nav_MainNavView_SelectionChanged">
-        <NavigationView.AutoSuggestBox>
-            <AutoSuggestBox x:Name="ASB" Width="240" QueryIcon="Find" PlaceholderText="Search"/>
-        </NavigationView.AutoSuggestBox>
-        <NavigationView.MenuItems>
-            <NavigationViewItem Content="Home" Tag="Home">
-                <NavigationViewItem.Icon>
-                    <SymbolIcon Symbol="Home"/>
-                </NavigationViewItem.Icon>
-            </NavigationViewItem>
-            <NavigationViewItem Content="Times" Tag="Times">
-                <NavigationViewItem.Icon>
-                    <SymbolIcon Symbol="CalendarWeek"/>
-                </NavigationViewItem.Icon>
-            </NavigationViewItem>
-            <NavigationViewItem Content="Clients" Tag="Clients">
-                <NavigationViewItem.Icon>
-                    <SymbolIcon Symbol="Contact"/>
-                </NavigationViewItem.Icon>
-            </NavigationViewItem>
-            <NavigationViewItem Content="Register" Tag="Register">
-                <NavigationViewItem.Icon>
-                    <SymbolIcon Symbol="People"/>
-                </NavigationViewItem.Icon>
-            </NavigationViewItem>
-            <NavigationViewItem Content="Income/Outgoings" Tag="Proceeds">
-                <NavigationViewItem.Icon>
-                    <FontIcon FontFamily="SegoeUI" Glyph="&#xA3;"/>
-                </NavigationViewItem.Icon>
-            </NavigationViewItem>
-        </NavigationView.MenuItems>
+    <Grid>
         <Frame x:Name="Frm_ContentFrame">
             <Frame.ContentTransitions>
                 <TransitionCollection>
@@ -50,5 +18,36 @@
                 </TransitionCollection>
             </Frame.ContentTransitions>
         </Frame>
-    </NavigationView>
+        <NavigationView x:Name="Nav_MainNavView"
+        IsBackButtonVisible="Collapsed"
+        PaneDisplayMode="Top" Loaded="Nav_MainNavView_Loaded" ItemInvoked="Nav_MainNavView_ItemInvoked" SelectionChanged="Nav_MainNavView_SelectionChanged">
+            <NavigationView.MenuItems>
+                <NavigationViewItem Content="Home" Tag="Home">
+                    <NavigationViewItem.Icon>
+                        <SymbolIcon Symbol="Home"/>
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+                <NavigationViewItem Content="Times" Tag="Times">
+                    <NavigationViewItem.Icon>
+                        <SymbolIcon Symbol="CalendarWeek"/>
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+                <NavigationViewItem Content="Clients" Tag="Clients">
+                    <NavigationViewItem.Icon>
+                        <SymbolIcon Symbol="Contact"/>
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+                <NavigationViewItem Content="Register" Tag="Register">
+                    <NavigationViewItem.Icon>
+                        <SymbolIcon Symbol="People"/>
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+                <NavigationViewItem Content="Income/Outgoings" Tag="Proceeds">
+                    <NavigationViewItem.Icon>
+                        <FontIcon FontFamily="SegoeUI" Glyph="&#xA3;"/>
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+            </NavigationView.MenuItems>
+        </NavigationView>
+    </Grid>
 </Page>

@@ -10,7 +10,7 @@
     xmlns:local1="using:CM_Assistant_UWP.Classes.Viewmodels"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Margin="0,72,0,0" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         
     </Grid>
 </Page>

@@ -8,7 +8,10 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <NavigationView x:Name="Nav_RegList" IsSettingsVisible="False" IsBackButtonVisible="Collapsed" IsBackEnabled="False" ItemInvoked="Nav_RegList_ItemInvoked" SelectionChanged="Nav_RegList_SelectionChanged">
+    <NavigationView Margin="0,72,0,0" x:Name="Nav_RegList" IsSettingsVisible="False" IsBackButtonVisible="Collapsed" IsBackEnabled="False" ItemInvoked="Nav_RegList_ItemInvoked" SelectionChanged="Nav_RegList_SelectionChanged">
+        <NavigationView.PaneHeader>
+            <TextBlock Margin="8" VerticalAlignment="Center" Text="Register"/>
+        </NavigationView.PaneHeader>
         <NavigationView.PaneFooter>
             <StackPanel>
                 <NavigationViewItem x:Name="NavItem_Refresh" Tapped="NavItem_Refresh_Tapped" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Content="Refresh" Icon="Refresh"/>

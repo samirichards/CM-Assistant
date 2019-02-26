@@ -10,7 +10,7 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Page.Resources>
-        <DataTemplate x:Name="Normal" x:Key="Normal" x:DataType="models:Child">
+        <DataTemplate x:Name="Normal" x:Key="Normal">
             <Grid Height="60">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"/>
@@ -27,7 +27,7 @@
                 </StackPanel>
             </Grid>
         </DataTemplate>
-        <DataTemplate x:Name="Detail" x:Key="Detail" x:DataType="models:Child">
+        <DataTemplate x:Name="Detail" x:Key="Detail">
             <Grid Height="180">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"/>
@@ -88,7 +88,10 @@
                     <TextBox Margin="8" AcceptsReturn="True" PlaceholderText="Notes" x:Name="Txt_Notes" Text="{Binding Notes}"/>
                     <TextBlock Margin="8" Text="Children in care"/>
                     <ListView SelectionChanged="Lst_Children_SelectionChanged" Background="{StaticResource SystemControlAcrylicWindowBrush}" Height="250" x:Name="Lst_Children" ItemTemplate="{StaticResource Normal}"/>
-                    <Button Margin="8" Click="Btn_AddChild_Click" x:Name="Btn_AddChild" HorizontalAlignment="Right" Content="Add Child"/>
+                    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                        <Button Margin="8" Click="Btn_AddChild_Click" x:Name="Btn_AddChild" HorizontalAlignment="Right" Content="Add Child"/>
+                        <Button Margin="8" x:Name="Btn_EditChild" Content="Edit Child" Click="Btn_EditChild_Click"/>
+                    </StackPanel>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,8">
                         <Button x:Name="Btn_DiscardChanges" Click="Btn_DiscardChanges_Click" Margin="8,8,0,8" Content="Discard Changes"/>
                         <Button x:Name="Btn_SaveChanges" Click="Btn_SaveChanges_Click" Margin="8" Content="Save Changes"/>

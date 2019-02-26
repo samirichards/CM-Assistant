@@ -23,5 +23,6 @@ namespace CM_Assistant_UWP.Classes.Models
         public string Notes { get; set; }
         public int ParentID { get; set; }
         public byte[] Photo { get; set; }
+        public bool Deleted { get; set; }
     }
 }

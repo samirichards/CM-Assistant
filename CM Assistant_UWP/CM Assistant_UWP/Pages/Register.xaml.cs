@@ -32,12 +32,12 @@ namespace CM_Assistant_UWP.Pages
 
         private void Nav_RegList_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
         {
-            Frm_ChildContent.Navigate(typeof(RegisterFolder.ChildRegister), args.InvokedItemContainer.Tag, new DrillInNavigationTransitionInfo());
+            Frm_ChildContent.Navigate(typeof(RegisterFolder.ChildRegister), args.InvokedItemContainer.Tag, new EntranceNavigationTransitionInfo());
         }
 
         private void Nav_RegList_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
         {
-            Frm_ChildContent.Navigate(typeof(RegisterFolder.ChildRegister), ((NavigationViewItem)args.SelectedItem).Tag, new DrillInNavigationTransitionInfo());
+            Frm_ChildContent.Navigate(typeof(RegisterFolder.ChildRegister), ((NavigationViewItem)args.SelectedItem).Tag, new EntranceNavigationTransitionInfo());
         }
 
         private void NavItem_Refresh_Tapped(object sender, TappedRoutedEventArgs e)
@@ -90,7 +90,7 @@ namespace CM_Assistant_UWP.Pages
                                     Content = conn.Table<Classes.Models.Client>().Where(a => a.ID == i).Single().Name
                                 };
                                 Nav_RegList.MenuItems.Add(header);
-                                foreach (Classes.Models.Child item in conn.Table<Classes.Models.Child>().Where(a => a.ParentID == i))
+                                foreach (Classes.Models.Child item in conn.Table<Classes.Models.Child>().Where(a => a.ParentID == i && a.Deleted != true))
                                 {
                                     NavigationViewItem navigationViewItem = new NavigationViewItem
                                     {
@@ -119,7 +119,8 @@ namespace CM_Assistant_UWP.Pages
                 };
                 Nav_RegList.MenuItems.Add(header);
             }
-            
+
+            GC.Collect();
         }
     }
 }

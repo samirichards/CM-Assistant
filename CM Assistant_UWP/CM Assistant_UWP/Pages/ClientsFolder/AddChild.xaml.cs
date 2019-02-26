@@ -28,6 +28,7 @@ namespace CM_Assistant_UWP.Pages.ClientsFolder
     /// </summary>
     public sealed partial class AddChild : Page
     {
+        public string PhotoDirectory { get; set; }
         public int ClientID { get; set; }
         private Classes.Models.Child ChildTemp = new Classes.Models.Child();
         public AddChild()
@@ -36,7 +37,7 @@ namespace CM_Assistant_UWP.Pages.ClientsFolder
             DateP_DOB_Input.MaxYear = DateTimeOffset.Now;
         }
 
-        private void Btn_Accept_Click(object sender, RoutedEventArgs e)
+        private async void Btn_Accept_Click(object sender, RoutedEventArgs e)
         {
             if (IsFormValid())
             {
@@ -102,10 +103,11 @@ namespace CM_Assistant_UWP.Pages.ClientsFolder
             picker.FileTypeFilter.Add(".jpeg");
             picker.FileTypeFilter.Add(".png");
 
-            Windows.Storage.StorageFile file = await picker.PickSingleFileAsync();
+            StorageFile file = await picker.PickSingleFileAsync();
             if (file != null)
             {
-                ChildTemp.Photo = await GetBytesAsync(file);
+                ChildTemp.Photo = await Classes.Utilities.ImageManipulation.GetBytesAsync(file);
+                PhotoDirectory = file.Path;
                 UpdateContext();
             }
         }

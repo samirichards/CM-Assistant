@@ -12,7 +12,8 @@ namespace CM_Assistant_UWP.Classes.Viewmodels
     class ChildQuickAccess
     {
         public string Name { get; set; }
-        public Image Icon { get; set; }
+        public ImageSource Icon { get; set; }
+        public int ChildID { get; set; }
 
         public ChildQuickAccess()
         {

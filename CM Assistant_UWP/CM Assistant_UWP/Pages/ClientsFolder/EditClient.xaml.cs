@@ -85,7 +85,7 @@ namespace CM_Assistant_UWP.Pages.ClientsFolder
 
         private void Btn_DiscardChanges_Click(object sender, RoutedEventArgs e)
         {
-            ((Frame)Parent).Navigate(typeof(ViewClient), ClientID, new DrillInNavigationTransitionInfo());
+            ((Frame)Parent).GoBack();
         }
 
         private void Btn_DeleteClient_Click(object sender, RoutedEventArgs e)
@@ -101,7 +101,7 @@ namespace CM_Assistant_UWP.Pages.ClientsFolder
             childList = null;
             if (conn.Table<Classes.Models.Child>().Where(a => a.ParentID == ClientID).Count() > 0)
             {
-                foreach (var item in conn.Table<Classes.Models.Child>().Where(a => a.ParentID == ClientID))
+                foreach (var item in conn.Table<Classes.Models.Child>().Where(a => a.ParentID == ClientID && a.Deleted != true))
                 {
                     childList = childList + item.Name + Environment.NewLine;
                 }
@@ -123,6 +123,24 @@ namespace CM_Assistant_UWP.Pages.ClientsFolder
             };
             dialog.CloseButtonText = "No";
             dialog.ShowAsync();
+        }
+
+        private void Btn_EditChild_Click(object sender, RoutedEventArgs e)
+        {
+            if (Lst_Children.SelectedItem != null)
+            {
+                ((Frame)Parent).Navigate(typeof(EditChild), (Lst_Children.SelectedItem as Classes.Models.Child).ID, new DrillInNavigationTransitionInfo());
+            }
+            else
+            {
+                ContentDialog dialog = new ContentDialog
+                {
+                    Title = "Error",
+                    Content = "Please select a child to edit",
+                    CloseButtonText = "Okay"
+                };
+                dialog.ShowAsync();
+            }
         }
     }
 }

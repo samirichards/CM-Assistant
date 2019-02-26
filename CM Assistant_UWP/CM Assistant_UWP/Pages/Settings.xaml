@@ -6,9 +6,74 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
+    xmlns:viewmodels="using:CM_Assistant_UWP.Classes.Viewmodels"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <TextBlock Text="Settings"/>
+        <Grid Margin="24,0,24,0">
+            <ScrollViewer Padding="0,48,0,0">
+                <StackPanel Margin="0,24,0,0" HorizontalAlignment="Center" Width="400">
+                    <StackPanel Background="{StaticResource SystemControlBackgroundChromeMediumLowBrush}" Margin="8">
+                        <TextBlock Margin="8" FontWeight="Medium" Text="Application Theme"/>
+                        <StackPanel Margin="8">
+                            <RadioButton IsEnabled="False" IsChecked="True" x:Name="Rdo_DefaultTheme" Checked="Rdo_Theme_ButtonChecked" Margin="4" Content="System Theme"/>
+                            <RadioButton IsEnabled="False" x:Name="Rdo_LightTheme" Checked="Rdo_Theme_ButtonChecked" Margin="4" Content="Light Theme"/>
+                            <RadioButton IsEnabled="False" x:Name="Rdo_DarkTheme" Checked="Rdo_Theme_ButtonChecked" Margin="4" Content="Dark Theme"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel  Background="{StaticResource SystemControlBackgroundChromeMediumLowBrush}" Margin="8">
+                        <TextBlock Margin="8" FontWeight="Medium" Text="Change Password"/>
+                        <StackPanel Margin="8">
+                            <PasswordBox Margin="4" x:Name="Txt_OldPassword" PlaceholderText="Current Password"/>
+                            <PasswordBox Margin="4" x:Name="Txt_NewPassword" PlaceholderText="New Password"/>
+                            <PasswordBox Margin="4" x:Name="Txt_Conf_NewPassword" PlaceholderText="Confirm New Password"/>
+                            <Button Margin="4" x:Name="Btn_ChangePassword" Click="Btn_ChangePassword_Click" Content="Change password"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel  Background="{StaticResource SystemControlBackgroundChromeMediumLowBrush}" Margin="8">
+                        <TextBlock Margin="8" FontWeight="Medium" Text="Recover Deleted Clients"/>
+                        <StackPanel Margin="8">
+                            <ListView SelectionMode="Multiple" x:Name="Lst_DeletedClients" Margin="4" Height="150" Background="{StaticResource SystemControlAcrylicWindowBrush}">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate x:DataType="viewmodels:DeletedClient">
+                                        <StackPanel>
+                                            <TextBlock FontWeight="Bold" Text="{Binding ParentName}" Margin="8,2,0,2"/>
+                                            <TextBlock Text="Children:" Margin="8,2,0,2"/>
+                                            <TextBlock Text="{Binding Children}" Margin="10,2,0,2" FontWeight="Light" FontStyle="Italic"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                            <Button x:Name="Btn_RecoverDeletedClients" Click="Btn_RecoverDeletedClients_Click" Margin="4" Content="Recover Selected Clients"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel  Background="{StaticResource SystemControlBackgroundChromeMediumLowBrush}" Margin="8">
+                        <TextBlock Margin="8" FontWeight="Medium" Text="Recover Deleted Children"/>
+                        <StackPanel Margin="8">
+                            <ListView SelectionMode="Multiple" x:Name="Lst_DeletedChildren" Margin="4" Height="150" Background="{StaticResource SystemControlAcrylicWindowBrush}">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate x:DataType="viewmodels:DeletedChild">
+                                        <StackPanel>
+                                            <TextBlock FontWeight="Bold" Text="{Binding Name}" Margin="8,2,0,2"/>
+                                            <TextBlock Text="Parent: " Margin="8,2,0,2"/>
+                                            <TextBlock Text="{Binding ParentName}" Margin="10,2,0,2" FontWeight="Light" FontStyle="Italic"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                            <Button x:Name="Btn_RecoverDeletedChildren" Click="Btn_RecoverDeletedChildren_Click" Margin="4" Content="Recover Selected Children"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel  Background="{StaticResource SystemControlBackgroundChromeMediumLowBrush}" Margin="8">
+                        <TextBlock Margin="8" FontWeight="Medium" Text="About | CM-Assistant"/>
+                        <StackPanel Margin="8">
+                            <TextBlock Margin="4" Text="An application for Childminders developed by Sami Richards as part of his A-Level Computer Science Coursework." TextWrapping="WrapWholeWords"/>
+                            <TextBlock Margin="4" Text="Found a bug? Email me at samirichards100@gmail.com" TextWrapping="WrapWholeWords"/>
+                            <TextBlock Margin="4" Text="Copyright Samson Inc, 2019" TextWrapping="WrapWholeWords"/>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
     </Grid>
 </Page>

@@ -42,8 +42,7 @@ namespace CM_Assistant_UWP.Pages.ClientsFolder
             Windows.Storage.StorageFolder localFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
             SQLiteConnection conn = new SQLiteConnection(localFolder.Path + "\\data.db");
             DataContext = conn.Table<Classes.Models.Client>().Where(a => a.ID == ClientID).Single();
-            Lst_Children.ItemsSource = conn.Table<Classes.Models.Child>().Where(a => a.ParentID == ClientID);
-            //This method needs finishing
+            Lst_Children.ItemsSource = conn.Table<Classes.Models.Child>().Where(a => a.ParentID == ClientID && a.Deleted != true);
         }
 
         private void Lst_Children_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -54,6 +53,24 @@ namespace CM_Assistant_UWP.Pages.ClientsFolder
         private void Btn_EditClient_Click(object sender, RoutedEventArgs e)
         {
             ((Frame)Parent).Navigate(typeof(EditClient), ClientID, new DrillInNavigationTransitionInfo());
+        }
+
+        private void Btn_ViewChild_Click(object sender, RoutedEventArgs e)
+        {
+            if (Lst_Children.SelectedItem == null)
+            {
+                ContentDialog dialog = new ContentDialog
+                {
+                    Title = "Error",
+                    Content = "Please select a child from the list to view",
+                    CloseButtonText = "Okay"
+                };
+                dialog.ShowAsync();
+            }
+            else
+            {
+                ((Frame)Parent).Navigate(typeof(ViewChild), ((Classes.Models.Child)Lst_Children.SelectedItem).ID, new DrillInNavigationTransitionInfo());
+            }
         }
     }
 }

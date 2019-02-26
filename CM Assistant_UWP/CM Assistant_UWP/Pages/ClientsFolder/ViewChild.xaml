@@ -1,0 +1,68 @@
+﻿<Page
+    x:Class="CM_Assistant_UWP.Pages.ClientsFolder.ViewChild"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CM_Assistant_UWP.Pages.ClientsFolder"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <ScrollViewer>
+            <Grid>
+                <StackPanel x:Name="Stk_ViewChildForm" Margin="8" HorizontalAlignment="Center" MaxWidth="800" MinWidth="400">
+                    <Ellipse  Width="200" Height="200" HorizontalAlignment="Center" Margin="16">
+                        <Ellipse.Fill>
+                            <ImageBrush Stretch="UniformToFill" x:Name="Img_ChildIcon" ImageSource="/Assets/acc.png"/>
+                        </Ellipse.Fill>
+                    </Ellipse>
+                    <TextBlock Text="{Binding Name}" FontSize="24" Margin="8"/>
+                    <TextBlock x:Name="Txt_ParentName" Text="Child of: " FontSize="18" Margin="8"/>
+                    <StackPanel Margin="8">
+                        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                            <CheckBox Margin="0,0,8,0" x:Name="Chk_FixedRate" VerticalAlignment="Center" IsEnabled="False" Content="Fixed Rate per session"/>
+                            <TextBlock x:Name="Txt_SessionRate" VerticalAlignment="Center" Text="Session Rate: N/A"/>
+                        </StackPanel>
+                        <TextBlock Text="Hourly Rates (In £)"/>
+                        <Grid Margin="8,0,8,0">
+                            <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                                <TextBlock Text="Rate: "/>
+                                <TextBlock Margin="4,0,0,0" FontWeight="Bold" x:Name="Txt_Rate" Text="{Binding Rate}"/>
+                            </StackPanel>
+                            <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                                <TextBlock Text="Alt Rate: "/>
+                                <TextBlock Margin="4,0,0,0" FontWeight="Bold" x:Name="Txt_AltRate" Text="{Binding AltRate}"/>
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+                    <StackPanel Margin="8">
+                        <TextBlock Text="Age: "/>
+                        <TextBlock FontWeight="Bold" Margin="8,0,0,0" Text="{Binding Age}"/>
+                    </StackPanel>
+                    <StackPanel Margin="8">
+                        <TextBlock Text="Date of birth"/>
+                        <DatePicker x:Name="Dtp_ChildDateOfBirth" IsEnabled="False" HorizontalAlignment="Stretch"/>
+                    </StackPanel>
+                    <StackPanel Margin="8">
+                        <TextBlock Text="Medical Notes "/>
+                        <TextBlock Margin="8,0,0,0" Text="{Binding MedicalNotes}"/>
+                    </StackPanel>
+                    <StackPanel Margin="8">
+                        <TextBlock Text="Diet Notes: "/>
+                        <TextBlock Margin="8,0,0,0" Text="{Binding DietNotes}"/>
+                    </StackPanel>
+                    <StackPanel Margin="8">
+                        <TextBlock Text="Notes: "/>
+                        <TextBlock Margin="8,0,0,0" Text="{Binding Notes}"/>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </ScrollViewer>
+        <Button Click="Btn_CloseViewChild_Click" x:Name="Btn_CloseViewChild" HorizontalAlignment="Right" Width="50" Height="50" Background="Transparent" Margin="16" VerticalAlignment="Top">
+            <Button.Content>
+                <SymbolIcon Symbol="Clear"/>
+            </Button.Content>
+        </Button>
+    </Grid>
+</Page>

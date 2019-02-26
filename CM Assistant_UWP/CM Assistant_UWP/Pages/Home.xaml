@@ -5,33 +5,65 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    xmlns:animations ="using:Microsoft.Toolkit.Uwp.UI.Animations"
+    xmlns:animations="using:Microsoft.Toolkit.Uwp.UI.Animations"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <Grid.Resources>
-            <Storyboard x:Name="EnterStoryboard">
-                <FadeInThemeAnimation Storyboard.TargetName="Overlay" />
-            </Storyboard>
-            <Storyboard x:Name="ExitStoryboard">
-                <FadeOutThemeAnimation Storyboard.TargetName="Overlay" />
-            </Storyboard>
-        </Grid.Resources>
-        <TextBlock Text="This is a test"/>
-        <GridView>
-            <GridView.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Vertical" Background="{StaticResource SystemControlBackgroundBaseMediumBrush}">
-                        <Image Source="/Assets/acc.png" Width="100" Height="100"/>
-                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Bottom" Text="{Binding Name}"/>
-                    </StackPanel>
-                </DataTemplate>
-            </GridView.ItemTemplate>
-        </GridView>
-        <Grid Visibility="Collapsed" Background="{StaticResource SystemControlAcrylicElementBrush}" x:Name="Overlay">
-            <Grid Width="400" Height="500" Background="{StaticResource ApplicationSecondaryForegroundThemeBrush}">
-                <Button Content="Close" Click="Button_Click" Background="Gray"/>
+        <Grid>
+            <Grid.Resources>
+                <Storyboard x:Name="EnterStoryboard">
+                    <FadeInThemeAnimation Storyboard.TargetName="Overlay" />
+                </Storyboard>
+                <Storyboard x:Name="ExitStoryboard">
+                    <FadeOutThemeAnimation Storyboard.TargetName="Overlay" />
+                </Storyboard>
+            </Grid.Resources>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="8*" MinWidth="400"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <GridView Padding="0,72,0,0" Grid.Column="1" ItemClick="GrdView_Test_ItemClick" HorizontalAlignment="Center" IsItemClickEnabled="True" x:Name="GrdView_Test">
+                <GridView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Width="150" Height="150" x:Name="Stk_ChildPanel" Orientation="Vertical" Background="{StaticResource SystemControlBackgroundChromeMediumLowBrush}">
+                            <Ellipse Margin="8" Width="100" Height="100">
+                                <Ellipse.Fill>
+                                    <ImageBrush Stretch="UniformToFill" x:Name="Img_Source" ImageSource="{Binding Icon}"/>
+                                </Ellipse.Fill>
+                            </Ellipse>
+                            <TextBlock Margin="8,0,8,8" HorizontalAlignment="Center" VerticalAlignment="Bottom" Text="{Binding Name}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </GridView.ItemTemplate>
+                <GridView.ItemContainerStyle>
+                    <Style TargetType="GridViewItem">
+                        <Setter Property="Margin" Value="8"/>
+                        <Setter Property="BorderThickness" Value="4"/>
+                    </Style>
+                </GridView.ItemContainerStyle>
+                <GridView.Resources>
+                    <GridViewItem  x:Key="AddChild">
+                        <StackPanel Width="150" Height="150" x:Name="Stk_ChildPanel" Orientation="Vertical" Background="{StaticResource SystemControlBackgroundChromeMediumLowBrush}">
+                            <SymbolIcon Symbol="Add" Width="100" Height="100"/>
+                            <TextBlock Margin="8,0,8,8" HorizontalAlignment="Center" VerticalAlignment="Bottom" Text="Add Child"/>
+                        </StackPanel>
+                    </GridViewItem>
+                </GridView.Resources>
+            </GridView>
+        </Grid>
+        <Grid Margin="0,72,0,0" Visibility="Collapsed" Background="{StaticResource SystemControlAltHighAcrylicElementBrush}" x:Name="Overlay">
+            <Grid Width="550" x:Name="Grd_ChildDetails" Height="550" Background="{StaticResource SystemControlBackgroundChromeMediumLowBrush}">
+                <Frame HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="Frm_QuickAccessFrame" Background="{StaticResource SystemControlBackgroundChromeMediumLowBrush}"/>
+                <Button Click="Button_Click" HorizontalAlignment="Right" Width="50" Height="50" Background="Transparent" Margin="8" VerticalAlignment="Top">
+                    <Button.Content>
+                        <SymbolIcon Symbol="Clear"/>
+                    </Button.Content>
+                </Button>
             </Grid>
+        </Grid>
+        <Grid Margin="0,72,0,0" x:Name="Grd_NoChildren" Visibility="Collapsed" Background="{StaticResource SystemControlAcrylicWindowBrush}">
+            <TextBlock Text="No Children to show, Add children on the clients screen to see them here" HorizontalAlignment="Center" VerticalAlignment="Center" FontStyle="Italic"/>
         </Grid>
     </Grid>
 </Page>

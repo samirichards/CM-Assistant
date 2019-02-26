@@ -66,7 +66,19 @@ namespace CM_Assistant_UWP.Pages
         private void Btn_DropDatabase_Click(object sender, RoutedEventArgs e)
         {
             Windows.Storage.StorageFolder localFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
-            File.Delete(localFolder.Path + "\\data.db");
+            try
+            {
+                File.Delete(localFolder.Path + "\\data.db");
+            }
+            catch (Exception a)
+            {
+                ContentDialog dialog = new ContentDialog
+                {
+                    Content = "Unable to delete the database" + Environment.NewLine + a.Message,
+                    CloseButtonText = "Okay"
+                };
+                dialog.ShowAsync();
+            }
         }
 
         private void Btn_Reset_Click(object sender, RoutedEventArgs e)

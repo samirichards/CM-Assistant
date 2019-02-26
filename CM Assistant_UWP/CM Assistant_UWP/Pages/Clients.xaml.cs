@@ -63,18 +63,19 @@ namespace CM_Assistant_UWP.Pages
             }
 
             conn.Close();
+            GC.Collect();
         }
 
         private void NavigationViewItem_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            Frm_ClientContent.Navigate(typeof(ClientsFolder.AddClient), null, new DrillInNavigationTransitionInfo());
+            Frm_ClientContent.Navigate(typeof(ClientsFolder.AddClient), null, new EntranceNavigationTransitionInfo());
         }
 
         private void Nav_ClientList_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
         {
             if (args.InvokedItemContainer.Tag != null)
             {
-                Frm_ClientContent.Navigate(typeof(ClientsFolder.ViewClient), args.InvokedItemContainer.Tag, new DrillInNavigationTransitionInfo());
+                Frm_ClientContent.Navigate(typeof(ClientsFolder.ViewClient), args.InvokedItemContainer.Tag, new EntranceNavigationTransitionInfo());
             }
         }
 
@@ -82,7 +83,7 @@ namespace CM_Assistant_UWP.Pages
         {
             if (args.SelectedItem != null)
             {
-                Frm_ClientContent.Navigate(typeof(ClientsFolder.ViewClient), ((NavigationViewItem)args.SelectedItem).Tag, new DrillInNavigationTransitionInfo());
+                Frm_ClientContent.Navigate(typeof(ClientsFolder.ViewClient), ((NavigationViewItem)args.SelectedItem).Tag, new EntranceNavigationTransitionInfo());
             }
         }
 

@@ -97,8 +97,11 @@
                         <TextBlock Margin="4,0,0,0" MaxLines="10" TextWrapping="WrapWholeWords" Text="{Binding Notes}"/>
                     </StackPanel>
                     <TextBlock Margin="8" Text="Children in care"/>
-                    <ListView SelectionChanged="Lst_Children_SelectionChanged" Background="{StaticResource SystemControlAcrylicWindowBrush}" Height="250" x:Name="Lst_Children" ItemTemplate="{StaticResource Normal}"/>
-                    <Button Margin="8" Click="Btn_EditClient_Click" x:Name="Btn_EditClient" HorizontalAlignment="Right" Content="Edit Client"/>
+                    <ListView SelectionMode="Single" SelectionChanged="Lst_Children_SelectionChanged" Background="{StaticResource SystemControlAcrylicWindowBrush}" Height="250" x:Name="Lst_Children" ItemTemplate="{StaticResource Normal}"/>
+                    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                        <Button Margin="8" Click="Btn_EditClient_Click" x:Name="Btn_EditClient" Content="Edit Client"/>
+                        <Button Margin="8" x:Name="Btn_ViewChild" Content="View Child" Click="Btn_ViewChild_Click"/>
+                    </StackPanel>
                 </StackPanel>
             </Grid>
         </ScrollViewer>
