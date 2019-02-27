@@ -9,7 +9,7 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <ScrollViewer>
+        <ScrollViewer VerticalScrollMode="Enabled">
             <Grid>
                 <StackPanel x:Name="Stk_EditChildForm" Margin="8" HorizontalAlignment="Center" MaxWidth="800" MinWidth="400">
                     <Ellipse  Width="200" Height="200" HorizontalAlignment="Center" Margin="16">

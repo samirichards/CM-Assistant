@@ -77,9 +77,9 @@ namespace CM_Assistant_UWP.Pages
                     ChildID = item.ID,
                     Name = item.Name
                 };
-                Lst_DeletedChildren.ItemsSource = deletedChildren;
-                Lst_DeletedChildren.DataContext = deletedChild;
+                deletedChildren.Add(deletedChild);
             }
+            Lst_DeletedChildren.ItemsSource = deletedChildren;
             conn.Close();
             GC.Collect();
         }
@@ -159,7 +159,19 @@ namespace CM_Assistant_UWP.Pages
 
         private void Btn_RecoverDeletedChildren_Click(object sender, RoutedEventArgs e)
         {
+            StorageFolder localFolder = ApplicationData.Current.LocalFolder;
+            SQLiteConnection conn = new SQLiteConnection(localFolder.Path + "\\data.db");
 
+            foreach (Classes.Viewmodels.DeletedChild item in Lst_DeletedChildren.SelectedItems)
+            {
+                var temp = conn.Table<Classes.Models.Child>().Where(a => a.ID == item.ChildID).Single();
+                temp.Deleted = false;
+                conn.Update(temp);
+                conn.Commit();
+            }
+            conn.Close();
+            GC.Collect();
+            RefreshDeletedChildren();
         }
     }
 }

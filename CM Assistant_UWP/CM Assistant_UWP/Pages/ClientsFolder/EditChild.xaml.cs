@@ -33,7 +33,7 @@ namespace CM_Assistant_UWP.Pages.ClientsFolder
 
         private void UpdatePage()
         {
-            Windows.Storage.StorageFolder localFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
+            StorageFolder localFolder = ApplicationData.Current.LocalFolder;
             SQLiteConnection conn = new SQLiteConnection(localFolder.Path + "\\data.db");
 
             ChildTemp = conn.Table<Classes.Models.Child>().Where(a => a.ID == ChildID).Single();
@@ -46,7 +46,19 @@ namespace CM_Assistant_UWP.Pages.ClientsFolder
             {
                 Txt_Rate.IsEnabled = false;
                 Txt_AltRate.IsEnabled = false;
-                //THIS NEEDS FINISHING LATER
+                Chk_FixedRate.IsChecked = true;
+                Txt_Rate.Text = "N/A";
+                Txt_AltRate.Text = "N/A";
+                Txt_SessionRate.Text = ChildTemp.Rate.ToString();
+            }
+            else
+            {
+                Txt_Rate.IsEnabled = true;
+                Txt_AltRate.IsEnabled = true;
+                Chk_FixedRate.IsChecked = false;
+                Txt_Rate.Text = ChildTemp.Rate.ToString();
+                Txt_AltRate.Text = ChildTemp.AltRate.ToString();
+                Txt_SessionRate.Text = "N/A";
             }
             Dtp_ChildDateOfBirth.SelectedDate = ChildTemp.DateOfBirth;
 
@@ -99,7 +111,7 @@ namespace CM_Assistant_UWP.Pages.ClientsFolder
             ChildTemp.MedicalNotes = Txt_MedicalNotes.Text;
             ChildTemp.DietNotes = Txt_DietNotes.Text;
 
-            StorageFolder localFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
+            StorageFolder localFolder = ApplicationData.Current.LocalFolder;
             SQLiteConnection conn = new SQLiteConnection(localFolder.Path + "\\data.db");
 
             conn.Update(ChildTemp);
@@ -125,7 +137,7 @@ namespace CM_Assistant_UWP.Pages.ClientsFolder
             dialog.PrimaryButtonClick += (ContentDialog, args) =>
             {
                 ChildTemp.Deleted = true;
-                StorageFolder localFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
+                StorageFolder localFolder = ApplicationData.Current.LocalFolder;
                 SQLiteConnection conn = new SQLiteConnection(localFolder.Path + "\\data.db");
 
                 conn.Update(ChildTemp);
