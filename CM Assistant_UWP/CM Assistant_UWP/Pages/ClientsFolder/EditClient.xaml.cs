@@ -87,7 +87,7 @@ namespace CM_Assistant_UWP.Pages.ClientsFolder
             ((Frame)Parent).GoBack();
         }
 
-        private void Btn_DeleteClient_Click(object sender, RoutedEventArgs e)
+        private async void Btn_DeleteClient_Click(object sender, RoutedEventArgs e)
         {
             Windows.Storage.StorageFolder localFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
             SQLiteConnection conn = new SQLiteConnection(localFolder.Path + "\\data.db");
@@ -121,10 +121,10 @@ namespace CM_Assistant_UWP.Pages.ClientsFolder
                 ((Frame)Parent).Content = null;
             };
             dialog.CloseButtonText = "No";
-            dialog.ShowAsync();
+            await dialog.ShowAsync();
         }
 
-        private void Btn_EditChild_Click(object sender, RoutedEventArgs e)
+        private async void Btn_EditChild_Click(object sender, RoutedEventArgs e)
         {
             if (Lst_Children.SelectedItem != null)
             {
@@ -138,7 +138,7 @@ namespace CM_Assistant_UWP.Pages.ClientsFolder
                     Content = "Please select a child to edit",
                     CloseButtonText = "Okay"
                 };
-                dialog.ShowAsync();
+                await dialog.ShowAsync();
             }
         }
     }

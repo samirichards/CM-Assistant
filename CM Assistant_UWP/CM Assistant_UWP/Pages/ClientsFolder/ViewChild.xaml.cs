@@ -66,7 +66,6 @@ namespace CM_Assistant_UWP.Pages.ClientsFolder
 
         private void Btn_CloseViewChild_Click(object sender, RoutedEventArgs e)
         {
-            //((Frame)Parent).Navigate(typeof(EditClient), ChildTemp.ParentID, new DrillInNavigationTransitionInfo());
             ((Frame)Parent).GoBack();
         }
     }

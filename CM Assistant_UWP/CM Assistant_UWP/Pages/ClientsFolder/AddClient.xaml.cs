@@ -34,7 +34,7 @@ namespace CM_Assistant_UWP.Pages.ClientsFolder
             args.Cancel = args.NewText.Any(c => !char.IsDigit(c));
         }
 
-        private void Btn_Accept_Click(object sender, RoutedEventArgs e)
+        private async void Btn_Accept_Click(object sender, RoutedEventArgs e)
         {
             if (IsFormValid())
             {
@@ -67,7 +67,7 @@ namespace CM_Assistant_UWP.Pages.ClientsFolder
                     Content = "There are empty required fields",
                     CloseButtonText = "Okay"
                 };
-                dialog.ShowAsync();
+                await dialog.ShowAsync();
             }
         }
 

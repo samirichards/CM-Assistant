@@ -28,7 +28,7 @@ namespace CM_Assistant_UWP.Pages
             this.InitializeComponent();
         }
 
-        private void Btn_Login_Click(object sender, RoutedEventArgs e)
+        private async void Btn_Login_Click(object sender, RoutedEventArgs e)
         {
             if (Classes.Utilities.Security.CheckPassword(Txt_Password.Password))
             {
@@ -42,7 +42,7 @@ namespace CM_Assistant_UWP.Pages
                     Content = "The password you entered was incorrect",
                     CloseButtonText = "Ok"
                 };
-                dialog.ShowAsync();
+                await dialog.ShowAsync();
             }
         }
 
@@ -63,7 +63,7 @@ namespace CM_Assistant_UWP.Pages
             Classes.Utilities.Security.RemovePassword();
         }
 
-        private void Btn_DropDatabase_Click(object sender, RoutedEventArgs e)
+        private async void Btn_DropDatabase_Click(object sender, RoutedEventArgs e)
         {
             Windows.Storage.StorageFolder localFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
             try
@@ -77,7 +77,7 @@ namespace CM_Assistant_UWP.Pages
                     Content = "Unable to delete the database" + Environment.NewLine + a.Message,
                     CloseButtonText = "Okay"
                 };
-                dialog.ShowAsync();
+                await dialog.ShowAsync();
             }
         }
 

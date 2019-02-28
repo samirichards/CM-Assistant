@@ -55,7 +55,7 @@ namespace CM_Assistant_UWP.Pages.ClientsFolder
             ((Frame)Parent).Navigate(typeof(EditClient), ClientID, new DrillInNavigationTransitionInfo());
         }
 
-        private void Btn_ViewChild_Click(object sender, RoutedEventArgs e)
+        private async void Btn_ViewChild_Click(object sender, RoutedEventArgs e)
         {
             if (Lst_Children.SelectedItem == null)
             {
@@ -65,7 +65,7 @@ namespace CM_Assistant_UWP.Pages.ClientsFolder
                     Content = "Please select a child from the list to view",
                     CloseButtonText = "Okay"
                 };
-                dialog.ShowAsync();
+                await dialog.ShowAsync();
             }
             else
             {

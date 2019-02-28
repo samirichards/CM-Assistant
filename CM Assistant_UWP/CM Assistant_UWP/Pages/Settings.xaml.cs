@@ -15,12 +15,10 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
-
 namespace CM_Assistant_UWP.Pages
 {
     /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
+    /// The page where the application can be configured to the users liking
     /// </summary>
     public sealed partial class Settings : Page
     {
@@ -101,7 +99,7 @@ namespace CM_Assistant_UWP.Pages
             RefreshDeletedClients();
         }
 
-        private void Btn_ChangePassword_Click(object sender, RoutedEventArgs e)
+        private async void Btn_ChangePassword_Click(object sender, RoutedEventArgs e)
         {
             if (Classes.Utilities.Security.CheckPassword(Txt_OldPassword.Password))
             {
@@ -119,7 +117,7 @@ namespace CM_Assistant_UWP.Pages
                             Content = "Successfully set new password, you may now log in with the new password",
                             CloseButtonText = "Okay"
                         };
-                        dialog.ShowAsync();
+                        await dialog.ShowAsync();
                     }
                     else
                     {
@@ -129,7 +127,7 @@ namespace CM_Assistant_UWP.Pages
                             Content = "New passwords did not match, please re-enter them correctly",
                             CloseButtonText = "Okay"
                         };
-                        dialog.ShowAsync();
+                        await dialog.ShowAsync();
                     }
                 }
                 else
@@ -140,7 +138,7 @@ namespace CM_Assistant_UWP.Pages
                         Content = "You new password must be at least 6 characters long",
                         CloseButtonText = "Okay"
                     };
-                    dialog.ShowAsync();
+                    await dialog.ShowAsync();
                 }
                 
             }
@@ -153,7 +151,7 @@ namespace CM_Assistant_UWP.Pages
                     Content = "Incorrect password, Please enter your current password in the current password box",
                     CloseButtonText = "Okay"
                 };
-                dialog.ShowAsync();
+                await dialog.ShowAsync();
             }
         }
 

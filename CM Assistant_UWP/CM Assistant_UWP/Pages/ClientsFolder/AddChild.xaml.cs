@@ -73,7 +73,7 @@ namespace CM_Assistant_UWP.Pages.ClientsFolder
                     Content = ("Successfully added " + ChildTemp.Name + " to database as a child of " + conn.Table<Classes.Models.Client>().Where(a => a.ID == ClientID).Single().Name),
                     CloseButtonText = "Okay"
                 };
-                dialog.ShowAsync();
+                await dialog.ShowAsync();
                 foreach (var item in Stk_Form.Children.Where(a => a.GetType() == typeof(TextBox)))
                 {
                     ((TextBox)item).Text = string.Empty;
@@ -88,13 +88,13 @@ namespace CM_Assistant_UWP.Pages.ClientsFolder
                     Content = "There are empty required fields",
                     CloseButtonText = "Okay"
                 };
-                dialog.ShowAsync();
+                await dialog.ShowAsync();
             }
         }
 
         private async void Btn_EditPhoto_ClickAsync(object sender, RoutedEventArgs e)
         {
-            var picker = new Windows.Storage.Pickers.FileOpenPicker
+            Windows.Storage.Pickers.FileOpenPicker picker = new Windows.Storage.Pickers.FileOpenPicker
             {
                 ViewMode = Windows.Storage.Pickers.PickerViewMode.Thumbnail,
                 SuggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.PicturesLibrary

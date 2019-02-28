@@ -75,7 +75,7 @@ namespace CM_Assistant_UWP.Pages
             }
             else
             {
-                new ContentDialog
+                var dialog = new ContentDialog
                 {
                     Title = "error",
                     Content = "There has been an error",

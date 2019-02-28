@@ -125,7 +125,7 @@ namespace CM_Assistant_UWP.Pages.ClientsFolder
             (Parent as Frame).GoBack();
         }
 
-        private void Btn_DeleteChild_Click(object sender, RoutedEventArgs e)
+        private async void Btn_DeleteChild_Click(object sender, RoutedEventArgs e)
         {
             ContentDialog dialog = new ContentDialog
             {
@@ -145,7 +145,7 @@ namespace CM_Assistant_UWP.Pages.ClientsFolder
                 conn.Close();
                 (Parent as Frame).GoBack();
             };
-            dialog.ShowAsync();
+            await dialog.ShowAsync();
         }
 
         private void UpdateName(TextBox sender, TextBoxTextChangingEventArgs args)
