@@ -20,10 +20,14 @@ namespace CM_Assistant_UWP.Classes.Utilities
                 using (DataWriter writer = new DataWriter(stream.GetOutputStreamAt(0)))
                 {
                     writer.WriteBytes(array);
+#pragma warning disable CS4014
                     writer.StoreAsync();
+#pragma warning restore CS4014
                 }
                 BitmapImage image = new BitmapImage();
+#pragma warning disable CS4014
                 image.SetSourceAsync(stream);
+#pragma warning restore CS4014
                 return image;
             }
         }

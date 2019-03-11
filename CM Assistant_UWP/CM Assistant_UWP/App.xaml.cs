@@ -45,6 +45,7 @@ namespace CM_Assistant_UWP
         /// <param name="e">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
+            //Check if the database file exists when the application first launches, if not then create one and create the tables required
             Windows.Storage.StorageFolder localFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
             if (!File.Exists(localFolder.Path + "\\data.db"))
             {
@@ -58,10 +59,10 @@ namespace CM_Assistant_UWP
                 conn.CreateTable<LearningNote>();
                 conn.Commit();
                 conn.Close();
-            
             }
             else
             {
+                //Update the ages of all the children stored in the database
                 Classes.Utilities.ChildDataManipulation.UpdateAges();
             }
             // Do not repeat app initialization when the Window already has content,
@@ -86,17 +87,21 @@ namespace CM_Assistant_UWP
             {
                 if (rootFrame.Content == null)
                 {
+                    //Check if this is the first application launch / the applicaion hasn't been configred yet
                     if (!Classes.Utilities.StartUpChecks.IsFirstboot())
                     {
                         if (Classes.Utilities.StartUpChecks.IsPasswordSet())
                         {
+                            //If a password is set then the application must already be configured, navigate to login page
                             rootFrame.Navigate(typeof(Pages.Authentication), e.Arguments);
                         }
                         else
                         {
+                            //If no password is set, lack of configuration has been confirmed, navigate to the setup page to configure the application. 
                             rootFrame.Navigate(typeof(Pages.InitialSetup), e.Arguments);
                         }
                     }
+                    //Navigate to the login page if the applcation is already configred
                     else
                     {
                         rootFrame.Navigate(typeof(Pages.Authentication), e.Arguments);
