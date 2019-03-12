@@ -17,5 +17,6 @@ namespace CM_Assistant_UWP.Classes.Models
         public DateTime TimeStamp { get; set; }
         public int InSourceID { get; set; }
         public int OutSourceID { get; set; }
+        public string Reason { get; set; }
     }
 }
