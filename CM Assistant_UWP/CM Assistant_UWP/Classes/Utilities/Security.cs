@@ -21,13 +21,13 @@ namespace CM_Assistant_UWP.Classes.Utilities
                 {
                     ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
                     Random rng = new Random();
-                    localSettings.Values["hash"] = rng.Next(int.MinValue, int.MaxValue);
+                    localSettings.Values["salt"] = rng.Next(int.MinValue, int.MaxValue);
                     //Set salt to a random integer
 
                     var password = new Windows.Security.Credentials.PasswordCredential
                     {
                         UserName = "user",
-                        Password = Encoding.Default.GetString(GenerateHash(input, localSettings.Values["hash"].ToString())),
+                        Password = Encoding.Default.GetString(GenerateHash(input, localSettings.Values["salt"].ToString())),
                         //Store the string representation of the password entered salted with the random integer created earlier
                         Resource = "CM-Assistant"
                     };
@@ -42,14 +42,14 @@ namespace CM_Assistant_UWP.Classes.Utilities
                     vault.Remove(vault.FindAllByUserName("user").Single());
                     ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
                     Random rng = new Random();
-                    localSettings.Values["hash"] = rng.Next(int.MinValue, int.MaxValue);
+                    localSettings.Values["salt"] = rng.Next(int.MinValue, int.MaxValue);
                     //Set salt to a random integer
 
                     var password = new Windows.Security.Credentials.PasswordCredential
                     {
                         UserName = "user",
                         Resource = "CM-Assistant",
-                        Password = Encoding.Default.GetString(GenerateHash(input, localSettings.Values["hash"].ToString()))
+                        Password = Encoding.Default.GetString(GenerateHash(input, localSettings.Values["salt"].ToString()))
                         //Store the string representation of the password entered salted with the random integer created earlier
                     };
                     return true;
@@ -78,7 +78,7 @@ namespace CM_Assistant_UWP.Classes.Utilities
                 temp.RetrievePassword();
 
                 //Return true or false if the hash of the password provided matches the one stored
-                if (temp.Password == Encoding.Default.GetString(GenerateHash(input, localSettings.Values["hash"].ToString())))
+                if (temp.Password == Encoding.Default.GetString(GenerateHash(input, localSettings.Values["salt"].ToString())))
                 {
                     return true;
                 }
