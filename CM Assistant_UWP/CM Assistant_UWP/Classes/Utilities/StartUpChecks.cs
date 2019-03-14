@@ -20,16 +20,20 @@ namespace CM_Assistant_UWP.Classes.Utilities
                 return true;
             }
         }
+        /// <summary>
+        /// Checks if the bool value in LocalSettings exists (if it does then it's considered true)
+        /// </summary>
 
-        public static void SetFirstBoot()
-        {
-            ApplicationData.Current.LocalSettings.Values["Loaded"] = true;
-        }
+        public static void SetFirstBoot() => ApplicationData.Current.LocalSettings.Values["Loaded"] = true;
+        /// <summary>
+        /// Sets a bool value in LocalSettings to true to show that the application has been previously launched
+        /// </summary>
 
-        public static void ResetFirstBoot()
-        {
-            ApplicationData.Current.LocalSettings.Values["Loaded"] = null;
-        }
+        public static void ResetFirstBoot() => ApplicationData.Current.LocalSettings.Values["Loaded"] = null;
+        /// <summary>
+        /// Resets First boot status of the application
+        /// </summary>
+        /// <returns></returns>
 
         public static bool IsPasswordSet()
         {
@@ -50,5 +54,8 @@ namespace CM_Assistant_UWP.Classes.Utilities
                 return false;
             }
         }
+        /// <summary>
+        /// Checks if there is a password set already
+        /// </summary>
     }
 }
