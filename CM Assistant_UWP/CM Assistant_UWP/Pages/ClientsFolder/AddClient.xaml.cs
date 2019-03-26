@@ -32,6 +32,7 @@ namespace CM_Assistant_UWP.Pages.ClientsFolder
         private void Txt_PhoneNumber_BeforeTextChanging(TextBox sender, TextBoxBeforeTextChangingEventArgs args)
         {
             args.Cancel = args.NewText.Any(c => !char.IsDigit(c));
+            //Disallow any characters that aren't classed as digits from being entered
         }
 
         private async void Btn_Accept_Click(object sender, RoutedEventArgs e)
@@ -82,6 +83,7 @@ namespace CM_Assistant_UWP.Pages.ClientsFolder
                 }
             }
             return temp;
+            //Returns false if there are any empty textboxes (except for the notes box) to show that the form is invalid
         }
     }
 }

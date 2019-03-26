@@ -37,6 +37,7 @@ namespace CM_Assistant_UWP.Pages
             Windows.Storage.StorageFolder localFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
             SQLiteConnection conn = new SQLiteConnection(localFolder.Path + "\\data.db");
             Nav_ClientList.MenuItems.Clear();
+            //Create a connection to the database, also clear the menu items before adding any new ones
             if (!(conn.Table<Classes.Models.Client>().Where(a=>a.Deleted != true).Count() > 0))
             {
                 NavigationViewItemHeader header = new NavigationViewItemHeader
@@ -45,6 +46,7 @@ namespace CM_Assistant_UWP.Pages
                 };
                 Nav_ClientList.MenuItems.Add(header);
                 Nav_ClientList.SelectedItem = null;
+                //By default inform the user that there are no clients and ensure that nothing is selected
             }
             else
             {
@@ -58,12 +60,15 @@ namespace CM_Assistant_UWP.Pages
                         Tag = item.ID
                     };
                     navigationViewItems.Add(navigationViewItem);
+                    //Add a menu item for each client in the database that isn't deleted with a default account icon to a list
                 }
                 Nav_ClientList.MenuItemsSource = navigationViewItems;
+                //Set the item source to the list created earlier
             }
 
             conn.Close();
             GC.Collect();
+            //Close the connection and call the garbage collector
         }
 
         private void NavigationViewItem_Tapped(object sender, TappedRoutedEventArgs e)
