@@ -44,6 +44,8 @@ namespace CM_Assistant_UWP.Pages.ClientsFolder
                 ChildTemp.FirstName = Txt_FirstNameInput.Text;
                 ChildTemp.LastName = Txt_LastNameInput.Text;
                 ChildTemp.Name = ChildTemp.FirstName + " " + ChildTemp.LastName;
+                //Set Names first
+
                 if ((bool)Chk_FixedSessionModifier.IsChecked)
                 {
                     ChildTemp.FixedRate = true;
@@ -55,16 +57,21 @@ namespace CM_Assistant_UWP.Pages.ClientsFolder
                     ChildTemp.Rate = double.Parse(Txt_Rate.Text);
                     ChildTemp.AltRate = double.Parse(Txt_AltRate.Text);
                 }
+                //Set the hourly rate or fixed daily rate depending on whether or not the FixedRate checkbox is checked
+
                 ChildTemp.DateOfBirth = DateP_DOB_Input.SelectedDate.Value;
                 ChildTemp.DietNotes = Txt_DietNotes.Text;
                 ChildTemp.MedicalNotes = Txt_MedicalNotes.Text;
                 ChildTemp.Notes = Txt_Notes.Text;
                 ChildTemp.Age = Math.Floor(DateTimeOffset.Now.Subtract(ChildTemp.DateOfBirth).TotalDays / 365);
+                //Set notes and date of birth, then calculate the age of that child at that moment
 
                 StorageFolder localFolder = ApplicationData.Current.LocalFolder;
                 SQLiteConnection conn = new SQLiteConnection(localFolder.Path + "\\data.db");
                 conn.Insert(ChildTemp);
                 conn.Commit();
+                //Create connection to the database and then insert the child object created earlier
+
                 ((Button)sender).IsEnabled = false;
                 ((Frame)Parent).Navigate(typeof(ViewClient), ClientID.ToString(), new DrillInNavigationTransitionInfo());
                 ContentDialog dialog = new ContentDialog
@@ -74,6 +81,9 @@ namespace CM_Assistant_UWP.Pages.ClientsFolder
                     CloseButtonText = "Okay"
                 };
                 await dialog.ShowAsync();
+                //Nacigate the user back to the ViewClient page, Where they can see this child in the children listbox
+                //Also informing the user that the child has been successfully added to the database
+
                 foreach (var item in Stk_Form.Children.Where(a => a.GetType() == typeof(TextBox)))
                 {
                     ((TextBox)item).Text = string.Empty;
@@ -89,6 +99,7 @@ namespace CM_Assistant_UWP.Pages.ClientsFolder
                     CloseButtonText = "Okay"
                 };
                 await dialog.ShowAsync();
+                //Inform the user of the error
             }
         }
 

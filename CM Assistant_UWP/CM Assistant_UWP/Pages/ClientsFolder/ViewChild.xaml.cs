@@ -56,12 +56,16 @@ namespace CM_Assistant_UWP.Pages.ClientsFolder
         {
             Windows.Storage.StorageFolder localFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
             SQLiteConnection conn = new SQLiteConnection(localFolder.Path + "\\data.db");
+            //Establish connection to database
 
             int childID = int.Parse(e.Parameter.ToString());
+            //Get the ID of the child to be viewed
 
             ChildTemp = conn.Table<Classes.Models.Child>().Where(a => a.ID == childID).Single();
             conn.Close();
             RefreshChild();
+            //Set childtemp to the child in the database with the ID childID
+            //Run RefreshChild to ensure page contents are up to date
         }
 
         private void Btn_CloseViewChild_Click(object sender, RoutedEventArgs e)

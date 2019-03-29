@@ -41,6 +41,7 @@ namespace CM_Assistant_UWP.Pages.ClientsFolder
             {
                 Windows.Storage.StorageFolder localFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
                 SQLiteConnection conn = new SQLiteConnection(localFolder.Path + "\\data.db");
+                //Create connection to the database
                 Classes.Models.Client client = new Classes.Models.Client
                 {
                     FirstName = Txt_FirstNameInput.Text,
@@ -51,14 +52,19 @@ namespace CM_Assistant_UWP.Pages.ClientsFolder
                     Notes = Txt_Notes.Text,
                     Deleted = false
                 };
+                //Create a new client from information entered in the form
                 client.Name = client.FirstName + " " + client.LastName;
                 conn.Insert(client);
                 conn.Commit();
                 conn.Close();
+                //Insert the client to the database, then close the connection
 
                 ((Button)sender).IsEnabled = false;
                 ((Clients)((NavigationView)((Frame)Parent).Parent).Parent).RefreshClients();
                 ((Frame)Parent).Content = null;
+                //Disable the button to prevent multiple clicks being registered
+                //Refresh the clients to show the new client in the database
+                //Clear the frame holding this page
             }
             else
             {
@@ -69,6 +75,7 @@ namespace CM_Assistant_UWP.Pages.ClientsFolder
                     CloseButtonText = "Okay"
                 };
                 await dialog.ShowAsync();
+                //Inform the user that there is missing informaiton
             }
         }
 
