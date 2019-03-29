@@ -15,8 +15,6 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 
-// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
-
 namespace CM_Assistant_UWP.Pages.ClientsFolder
 {
     /// <summary>
@@ -40,6 +38,8 @@ namespace CM_Assistant_UWP.Pages.ClientsFolder
             {
                 Img_ChildIcon.ImageSource = Classes.Utilities.ImageManipulation.ImageFromByteArray(ChildTemp.Photo);
             }
+            //Set the photo to the one stored in the table
+            //If there isn't a photo then leave it as the default value (blank)
             Txt_ParentName.Text = "Child of: " + conn.Table<Classes.Models.Client>().Where(a => a.ID == ChildTemp.ParentID).Single().Name;
 
             if (ChildTemp.FixedRate == true)
@@ -49,6 +49,7 @@ namespace CM_Assistant_UWP.Pages.ClientsFolder
                 Txt_SessionRate.Text = "Session Rate: " + ChildTemp.Rate;
                 Chk_FixedRate.IsChecked = true;
             }
+            //Special case to override the binding in the event that the pay from this child is calculated at a fixed rate per day
             Dtp_ChildDateOfBirth.SelectedDate = ChildTemp.DateOfBirth;
         }
 
