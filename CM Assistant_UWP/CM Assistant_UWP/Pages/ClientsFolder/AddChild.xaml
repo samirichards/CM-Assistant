@@ -8,8 +8,8 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <ScrollViewer>
-        <Grid>
+    <Grid>
+        <ScrollViewer>
             <StackPanel Margin="8" HorizontalAlignment="Center" MaxWidth="800" MinWidth="400">
                 <StackPanel Name="Stk_Form" Margin="8" HorizontalAlignment="Center" MaxWidth="800" MinWidth="400">
                     <Image x:Name="Img_ChildPhoto" HorizontalAlignment="Center" Margin="8" Width="100" Height="100" Source="{Binding Photo}"/>
@@ -33,6 +33,11 @@
                     <TextBlock HorizontalAlignment="Center" Opacity="0.52" Text="Times for this child can be set on the Times tab"/>
                 </StackPanel>
             </StackPanel>
-        </Grid>
-    </ScrollViewer>
+        </ScrollViewer>
+        <Button Click="Btn_CloseAddChild_Click" x:Name="Btn_CloseAddChild" HorizontalAlignment="Right" Width="50" Height="50" Background="Transparent" Margin="16" VerticalAlignment="Top">
+            <Button.Content>
+                <SymbolIcon Symbol="Clear"/>
+            </Button.Content>
+        </Button>
+    </Grid>
 </Page>

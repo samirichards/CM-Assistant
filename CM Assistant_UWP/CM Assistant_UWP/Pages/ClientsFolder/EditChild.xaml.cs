@@ -106,18 +106,22 @@ namespace CM_Assistant_UWP.Pages.ClientsFolder
                 ChildTemp.Rate = double.Parse(Txt_Rate.Text);
                 ChildTemp.AltRate = double.Parse(Txt_AltRate.Text);
             }
+            //Set rate based on if FixedRate is checked
             ChildTemp.DateOfBirth = (DateTimeOffset)Dtp_ChildDateOfBirth.SelectedDate;
             ChildTemp.Notes = Txt_Notes.Text;
             ChildTemp.MedicalNotes = Txt_MedicalNotes.Text;
             ChildTemp.DietNotes = Txt_DietNotes.Text;
+            //Set notes for child
 
             StorageFolder localFolder = ApplicationData.Current.LocalFolder;
             SQLiteConnection conn = new SQLiteConnection(localFolder.Path + "\\data.db");
+            //Establish db connection
 
             conn.Update(ChildTemp);
             conn.Commit();
             conn.Close();
             (Parent as Frame).GoBack();
+            //Update record in the database and then navigate back
         }
 
         private void Btn_DiscardChanges_Click(object sender, RoutedEventArgs e)

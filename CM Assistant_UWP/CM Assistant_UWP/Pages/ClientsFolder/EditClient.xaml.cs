@@ -47,15 +47,7 @@ namespace CM_Assistant_UWP.Pages.ClientsFolder
 
         private void Btn_AddChild_Click(object sender, RoutedEventArgs e)
         {
-            Grd_AddChildOverlay.Visibility = Visibility.Visible;
-            Frm_AddChildUI.Navigate(typeof(AddChild), ClientID, new DrillInNavigationTransitionInfo());
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            Frm_AddChildUI.Content = null;
-            Grd_AddChildOverlay.Visibility = Visibility.Collapsed;
-
+            (Parent as Frame).Navigate(typeof(AddChild), ClientID, new DrillInNavigationTransitionInfo());
         }
 
         private void Lst_Children_SelectionChanged(object sender, SelectionChangedEventArgs e)

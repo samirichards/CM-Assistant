@@ -192,5 +192,10 @@ namespace CM_Assistant_UWP.Pages.ClientsFolder
                 Txt_FixedRate.IsEnabled = false;
             }
         }
+
+        private void Btn_CloseAddChild_Click(object sender, RoutedEventArgs e)
+        {
+            (Parent as Frame).GoBack();
+        }
     }
 }
