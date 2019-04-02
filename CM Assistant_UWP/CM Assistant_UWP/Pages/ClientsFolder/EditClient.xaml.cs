@@ -42,7 +42,10 @@ namespace CM_Assistant_UWP.Pages.ClientsFolder
             Windows.Storage.StorageFolder localFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
             SQLiteConnection conn = new SQLiteConnection(localFolder.Path + "\\data.db");
             DataContext = conn.Table<Classes.Models.Client>().Where(a => a.ID == ClientID).Single();
-            Lst_Children.ItemsSource = conn.Table<Classes.Models.Child>().Where(a => a.ParentID == ClientID);
+            //Set Datacontext (used for binding ) to the only instance of this client in the database
+
+            Lst_Children.ItemsSource = conn.Table<Classes.Models.Child>().Where(a => a.ParentID == ClientID && a.Deleted != true);
+            //Set the children listview item source to the children with this client as their parent, and who aren't deleted
         }
 
         private void Btn_AddChild_Click(object sender, RoutedEventArgs e)

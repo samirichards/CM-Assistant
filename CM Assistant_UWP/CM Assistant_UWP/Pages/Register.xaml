@@ -14,7 +14,7 @@
         </NavigationView.PaneHeader>
         <NavigationView.PaneFooter>
             <StackPanel>
-                <NavigationViewItem x:Name="NavItem_Refresh" Tapped="NavItem_Refresh_Tapped" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Content="Refresh" Icon="Refresh"/>
+                <NavigationViewItem IsEnabled="False" Visibility="Collapsed" x:Name="NavItem_Refresh" Tapped="NavItem_Refresh_Tapped" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Content="Refresh" Icon="Refresh"/>
             </StackPanel>
         </NavigationView.PaneFooter>
         <Frame Grid.Column="1" Background="{StaticResource SystemControlAcrylicWindowBrush}" x:Name="Frm_ChildContent"/>
