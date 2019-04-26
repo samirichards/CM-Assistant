@@ -16,6 +16,7 @@ using Windows.UI.Xaml.Navigation;
 using Windows.UI.Xaml.Media.Animation;
 using SQLite;
 using SQLitePCL;
+using System.Threading.Tasks;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -32,7 +33,7 @@ namespace CM_Assistant_UWP.Pages
             RefreshClients();
         }
 
-        public void RefreshClients()
+        public Task RefreshClients()
         {
             Windows.Storage.StorageFolder localFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
             SQLiteConnection conn = new SQLiteConnection(localFolder.Path + "\\data.db");
@@ -68,6 +69,7 @@ namespace CM_Assistant_UWP.Pages
 
             conn.Close();
             GC.Collect();
+            return Task.FromResult(0);
             //Close the connection and call the garbage collector
         }
 
