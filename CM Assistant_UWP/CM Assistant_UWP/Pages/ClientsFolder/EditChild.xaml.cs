@@ -81,6 +81,7 @@ namespace CM_Assistant_UWP.Pages.ClientsFolder
             picker.FileTypeFilter.Add(".jpg");
             picker.FileTypeFilter.Add(".jpeg");
             picker.FileTypeFilter.Add(".png");
+            //Open a file dialog for the user to select a photo
 
             StorageFile file = await picker.PickSingleFileAsync();
             if (file != null)
@@ -88,6 +89,7 @@ namespace CM_Assistant_UWP.Pages.ClientsFolder
                 ChildTemp.Photo = await Classes.Utilities.ImageManipulation.GetBytesAsync(file);
                 Img_ChildIcon.ImageSource = Classes.Utilities.ImageManipulation.ImageFromByteArray(ChildTemp.Photo);
             }
+            //Store the byte array generated from the file the user selected
         }
 
         private void Btn_SaveChanges_Click(object sender, RoutedEventArgs e)

@@ -60,7 +60,7 @@ namespace CM_Assistant_UWP.Pages.ClientsFolder
                 //Insert the client to the database, then close the connection
 
                 ((Button)sender).IsEnabled = false;
-                ((Clients)((NavigationView)((Frame)Parent).Parent).Parent).RefreshClients();
+                await ((Clients)((NavigationView)((Frame)Parent).Parent).Parent).RefreshClients();
                 ((Frame)Parent).Content = null;
                 //Disable the button to prevent multiple clicks being registered
                 //Refresh the clients to show the new client in the database
