@@ -39,20 +39,10 @@ namespace CM_Assistant_UWP.Pages
             SQLiteConnection conn = new SQLiteConnection(localFolder.Path + "\\data.db");
             Nav_ClientList.MenuItems.Clear();
             //Create a connection to the database, also clear the menu items before adding any new ones
-            if (!(conn.Table<Classes.Models.Client>().Where(a=>a.Deleted != true).Count() > 0))
-            {
-                NavigationViewItemHeader header = new NavigationViewItemHeader
-                {
-                    Content = "No Clients to show"
-                };
-                Nav_ClientList.MenuItems.Add(header);
-                Nav_ClientList.SelectedItem = null;
-                //By default inform the user that there are no clients and ensure that nothing is selected
-            }
-            else
+            if (conn.Table<Classes.Models.Client>().Where(a => a.Deleted != true).Count() > 0)
             {
                 List<NavigationViewItem> navigationViewItems = new List<NavigationViewItem>();
-                foreach (Classes.Models.Client item in conn.Table<Classes.Models.Client>().Where(a=> a.Deleted != true))
+                foreach (Classes.Models.Client item in conn.Table<Classes.Models.Client>().Where(a => a.Deleted != true))
                 {
                     NavigationViewItem navigationViewItem = new NavigationViewItem
                     {
@@ -65,6 +55,16 @@ namespace CM_Assistant_UWP.Pages
                 }
                 Nav_ClientList.MenuItemsSource = navigationViewItems;
                 //Set the item source to the list created earlier
+            }
+            else
+            {
+                NavigationViewItemHeader header = new NavigationViewItemHeader
+                {
+                    Content = "No Clients to show"
+                };
+                Nav_ClientList.MenuItems.Add(header);
+                Nav_ClientList.SelectedItem = null;
+                //By default inform the user that there are no clients and ensure that nothing is selected
             }
 
             conn.Close();
