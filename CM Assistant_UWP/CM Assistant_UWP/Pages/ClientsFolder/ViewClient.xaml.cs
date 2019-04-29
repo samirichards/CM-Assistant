@@ -35,6 +35,7 @@ namespace CM_Assistant_UWP.Pages.ClientsFolder
         {
             ClientID = int.Parse(e.Parameter.ToString());
             UpdatePage();
+            //Set ClientID to the parameter given then update the page
         }
 
         public void UpdatePage()
@@ -43,6 +44,7 @@ namespace CM_Assistant_UWP.Pages.ClientsFolder
             SQLiteConnection conn = new SQLiteConnection(localFolder.Path + "\\data.db");
             DataContext = conn.Table<Classes.Models.Client>().Where(a => a.ID == ClientID).Single();
             Lst_Children.ItemsSource = conn.Table<Classes.Models.Child>().Where(a => a.ParentID == ClientID && a.Deleted != true);
+            //Set DataContext to the latest record with the ID of ClientID
         }
 
         private void Lst_Children_SelectionChanged(object sender, SelectionChangedEventArgs e)
