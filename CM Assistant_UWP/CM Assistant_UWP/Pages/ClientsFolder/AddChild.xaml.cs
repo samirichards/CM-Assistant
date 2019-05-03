@@ -28,7 +28,6 @@ namespace CM_Assistant_UWP.Pages.ClientsFolder
     /// </summary>
     public sealed partial class AddChild : Page
     {
-        public string PhotoDirectory { get; set; }
         public int ClientID { get; set; }
         private Classes.Models.Child ChildTemp = new Classes.Models.Child();
         public AddChild()
@@ -113,14 +112,15 @@ namespace CM_Assistant_UWP.Pages.ClientsFolder
             picker.FileTypeFilter.Add(".jpg");
             picker.FileTypeFilter.Add(".jpeg");
             picker.FileTypeFilter.Add(".png");
+            //Open a file picker and only allow image files to be selected
 
             StorageFile file = await picker.PickSingleFileAsync();
             if (file != null)
             {
                 ChildTemp.Photo = await Classes.Utilities.ImageManipulation.GetBytesAsync(file);
-                PhotoDirectory = file.Path;
                 UpdateContext();
             }
+            //Set the Temporary child objects photo to the byte array returned by reading the photo at the location described
         }
 
         private bool IsFormValid()
