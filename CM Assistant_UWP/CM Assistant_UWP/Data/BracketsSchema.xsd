@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="XMLSchema1"
+    targetNamespace="http://tempuri.org/XMLSchema1.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/XMLSchema1.xsd"
+    xmlns:mstns="http://tempuri.org/XMLSchema1.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="TaxRates">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="TaxYear" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="StartDate" minOccurs="1" maxOccurs="1" type="xs:date"/>
+              <xs:element name="EndDate" minOccurs="1" maxOccurs="1" type="xs:date"/>
+              <xs:element name="AdditionalRateMinIncome" minOccurs="1" maxOccurs="1" type="xs:int"/>
+              <xs:element name="AdditionalRateTaxRate" minOccurs="1" maxOccurs="1" type="xs:float"/>
+              <xs:element name="Bracket" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="LowerBound" minOccurs="1" maxOccurs="1" type="xs:int"/>
+                    <xs:element name="UpperBound" minOccurs="1" maxOccurs="1" type="xs:int"/>
+                    <xs:element name="Rate" minOccurs="1" maxOccurs="1" type="xs:float"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TaxRates 
+      xmlns="http://tempuri.org/XMLSchema1.xsd"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="BracketsSchema.xsd">
+  <TaxYear>
+    <StartDate>2000-04-01</StartDate>
+    <EndDate>2001-03-30</EndDate>
+    <AdditionalRateMinIncome>150001</AdditionalRateMinIncome>
+    <AdditionalRateTaxRate>0.55</AdditionalRateTaxRate>
+    <Bracket>
+      <LowerBound>0</LowerBound>
+      <UpperBound>12500</UpperBound>
+      <Rate>1</Rate>
+    </Bracket>
+    <Bracket>
+      <LowerBound>12501</LowerBound>
+      <UpperBound>50000</UpperBound>
+      <Rate>0.8</Rate>
+    </Bracket>
+    <Bracket>
+      <LowerBound>50001</LowerBound>
+      <UpperBound>150000</UpperBound>
+      <Rate>0.6</Rate>
+    </Bracket>
+  </TaxYear>
+</TaxRates>
