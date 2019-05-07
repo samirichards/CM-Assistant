@@ -15,22 +15,22 @@
                     <TextBlock Text="{Binding Name}" FontSize="24" Margin="8"/>
 
                     <StackPanel Margin="8" HorizontalAlignment="Center">
-                        <CheckBox Content="Custom sign in time" HorizontalAlignment="Center"/>
-                        <TimePicker Header="Sign in time" IsEnabled="False" HorizontalAlignment="Stretch"/>
+                        <CheckBox Content="Custom sign in time" x:Name="Chk_CustomSignInTime" HorizontalAlignment="Center"/>
+                        <TimePicker Header="Sign in time" IsEnabled="True" x:Name="TimePick_SignInTime" HorizontalAlignment="Stretch"/>
                     </StackPanel>
                     <StackPanel Margin="8" HorizontalAlignment="Center">
-                        <CheckBox Content="Custom sign out time" HorizontalAlignment="Center"/>
-                        <TimePicker Header="Sign out time" IsEnabled="False" HorizontalAlignment="Stretch"/>
+                        <CheckBox Content="Custom sign out time" x:Name="Chk_CustomSignOutTime" HorizontalAlignment="Center"/>
+                        <TimePicker Header="Sign out time" x:Name="TimePick_SignOutTime" IsEnabled="False" HorizontalAlignment="Stretch"/>
                     </StackPanel>
                     <StackPanel Margin="8">
-                        <TextBlock FontSize="14" Text="Currrent Session time: " HorizontalAlignment="Center"/>
-                        <TextBlock FontSize="14" Text="Current projected pay: " HorizontalAlignment="Center"/>
+                        <TextBlock FontSize="14" Text="Currrent Session time: " x:Name="Txt_SessionTime" HorizontalAlignment="Center"/>
+                        <TextBlock FontSize="14" Text="Current projected pay: " x:Name="Txt_SessionPay" HorizontalAlignment="Center"/>
                     </StackPanel>
                     <Grid Margin="8">
-                        <Button Content="Sign in" HorizontalAlignment="Left"/>
-                        <Button Content="Sign out" HorizontalAlignment="Right"/>
+                        <Button Content="Sign in" x:Name="Btn_SignIn" Click="Btn_SignIn_Click" HorizontalAlignment="Left"/>
+                        <Button Content="Sign out" x:Name="Btn_SignOut" IsEnabled="False" Click="Btn_SignOut_Click" HorizontalAlignment="Right"/>
                     </Grid>
-
+                    <!--
                     <TextBlock Margin="4" Text="Expected Times"/>
                     <ListView x:Name="Lst_ExpectedTimes" Height="350" Background="{StaticResource SystemControlAcrylicWindowMediumHighBrush}">
                         <ListView.ItemTemplate>
@@ -51,6 +51,7 @@
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
+                    -->
                 </StackPanel>
             </Grid>
         </ScrollViewer>

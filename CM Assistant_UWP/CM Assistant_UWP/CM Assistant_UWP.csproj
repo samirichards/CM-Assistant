@@ -129,6 +129,7 @@
     <Compile Include="Classes\Models\Transaction.cs" />
     <Compile Include="Classes\Utilities\ChildAttendance.cs" />
     <Compile Include="Classes\Utilities\ChildDataManipulation.cs" />
+    <Compile Include="Classes\Utilities\Database.cs" />
     <Compile Include="Classes\Utilities\ImageManipulation.cs" />
     <Compile Include="Classes\Utilities\Security.cs" />
     <Compile Include="Classes\Utilities\StartUpChecks.cs" />

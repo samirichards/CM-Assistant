@@ -14,7 +14,7 @@ namespace CM_Assistant_UWP.Classes.Models
         public int ID { get; set; }
 
         public double Amount { get; set; }
-        public DateTime TimeStamp { get; set; }
+        public DateTimeOffset? TimeStamp { get; set; }
         public int InSourceID { get; set; }
         public int OutSourceID { get; set; }
         public string Reason { get; set; }

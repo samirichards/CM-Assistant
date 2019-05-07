@@ -5,13 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using SQLite;
 using CM_Assistant_UWP.Classes.Models;
+using CM_Assistant_UWP;
 
 namespace CM_Assistant_UWP.Classes.Utilities
 {
     class ChildAttendance
     {
         //Used to open a session with the start time custom, but usually is the current time
-        public int SetChildPresent(int _ChildID, DateTimeOffset time)
+        public static int SetChildPresent(int _ChildID, DateTimeOffset time)
         {
             Windows.Storage.StorageFolder localFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
             SQLiteConnection conn = new SQLiteConnection(localFolder.Path + "\\data.db");
@@ -21,7 +22,7 @@ namespace CM_Assistant_UWP.Classes.Utilities
                 ChildID = _ChildID,
                 SessionOpen = true,
                 Start = time,
-                End = null
+                //Leave end null so that it can be set later
             };
             conn.Insert(session);
             conn.Commit();
@@ -30,21 +31,35 @@ namespace CM_Assistant_UWP.Classes.Utilities
                 CommandText = "SELECT last_insert_rowid()"
             };
             return command.ExecuteScalar<int>();
+            //Return ID of session
         }
 
         //Used to close a session at a custom time, usually the current time but it can be different
-        public void SetChildLeft(int _ChildID, DateTimeOffset time)
+        public static bool SetChildLeft(int _ChildID, DateTimeOffset time)
         {
-            Windows.Storage.StorageFolder localFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
-            SQLiteConnection conn = new SQLiteConnection(localFolder.Path + "\\data.db");
+            SQLiteConnection conn = Database.GetConnection();
+            if (conn.Table<Session>().Where(a => a.ChildID == _ChildID && a.SessionOpen == true).Count() > 0)
+            {
+                Session session = conn.Table<Session>().Where(a => a.ChildID == _ChildID && a.SessionOpen == true).Single();
+                session.End = time;
+                session.SessionOpen = false;
+                conn.Update(session);
+                RecordSession(session.SessionID);
+                conn.Close();
+                //Record amount earned after closing the session
 
-            conn.Table<Session>().Where(a => a.ChildID == _ChildID && a.SessionOpen == true).Single().End = time;
-            conn.Table<Session>().Where(a => a.ChildID == _ChildID && a.SessionOpen == true).Single().SessionOpen = false;
-            conn.Commit();
+                return true;
+                //Return true if session was closed
+            }
+            else
+            {
+                return false;
+                //Return false if there was no session for that child open
+            }
         }
 
         //Used as a last resort when you want a particular session closed by ID
-        public void TerminateSession(int SessionID)
+        public static void TerminateSession(int SessionID)
         {
             Windows.Storage.StorageFolder localFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
             SQLiteConnection conn = new SQLiteConnection(localFolder.Path + "\\data.db");
@@ -52,6 +67,68 @@ namespace CM_Assistant_UWP.Classes.Utilities
             conn.Table<Session>().Where(a => a.SessionOpen == true && a.SessionID == SessionID).Single().End = DateTimeOffset.Now;
             conn.Table<Session>().Where(a => a.SessionOpen == true && a.SessionID == SessionID).Single().SessionOpen = false;
             conn.Commit();
+            RecordSession(SessionID);
+            //Record the amount earned after closing the session
+        }
+
+        public static void RecordSession(int SessionID)
+        {
+            double IncomeAmount;
+            SQLiteConnection conn = Database.GetConnection();
+            if (conn.Table<Transaction>().Where(a=> a.InSourceID == SessionID).Count() > 0)
+            {
+                int temp = conn.Table<Session>().Where(b => b.SessionID == SessionID).Single().ChildID;
+                Child child = conn.Table<Child>().Where(a => a.ID == temp).Single();
+                Session session = conn.Table<Session>().Where(a => a.SessionID == SessionID).Single();
+                if (child.FixedRate)
+                {
+                    IncomeAmount = child.Rate;
+                }
+                else
+                {
+                    IncomeAmount = child.Rate * session.End.Value.Subtract(session.Start.Value).TotalHours;
+                }
+                //Set the amount earnt based on either time spent with the user or the fixed amount per session
+                Transaction transaction = conn.Table<Transaction>().Where(a => a.InSourceID == SessionID).Single();
+
+                transaction.TimeStamp = session.End;
+                transaction.Amount = IncomeAmount;
+                transaction.Reason = "Income from " + conn.Table<Client>().Where(a => a.ID == child.ParentID).Single().Name + " for care of " + child.Name;
+                //Get transaction from the database and update its values
+
+                conn.CreateTable<Transaction>();
+                conn.Update(transaction);
+                conn.Commit();
+                conn.Close();
+            }
+            else
+            {
+                int temp = conn.Table<Session>().Where(b => b.SessionID == SessionID).Single().ChildID;
+                Child child = conn.Table<Child>().Where(a => a.ID == temp).Single();
+                Session session = conn.Table<Session>().Where(a => a.SessionID == SessionID).Single();
+                if (child.FixedRate)
+                {
+                    IncomeAmount = child.Rate;
+                }
+                else
+                {
+                    IncomeAmount = child.Rate * session.End.Value.Subtract(session.Start.Value).TotalHours;
+                }
+                //Set the amount earnt based on either time spent with the user or the fixed amount per session
+                Transaction transaction = new Transaction
+                {
+                    InSourceID = SessionID,
+                    TimeStamp = session.End,
+                    Amount = IncomeAmount,
+                    Reason = "Income from " + conn.Table<Client>().Where(a=>a.ID == child.ParentID).Single().Name + " for care of " + child.Name
+                };
+                //Create new transaction object
+
+                conn.CreateTable<Transaction>();
+                conn.Insert(transaction);
+                conn.Commit();
+                conn.Close();
+            }
         }
     }
 }

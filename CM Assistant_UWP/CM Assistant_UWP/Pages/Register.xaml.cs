@@ -61,7 +61,13 @@ namespace CM_Assistant_UWP.Pages
                 Nav_RegList.MenuItems.Add(header);
                 foreach (Classes.Models.Session item in conn.Table<Classes.Models.Session>().Where(a=> a.SessionOpen == true))
                 {
-                    Nav_RegList.MenuItems.Add(conn.Table<Classes.Models.Child>().Where(a => a.ID == item.ChildID).Single());
+                    NavigationViewItem navigationViewItem = new NavigationViewItem
+                    {
+                        Content = conn.Table<Classes.Models.Child>().Where(a=> a.ID == item.ChildID).Single().Name,
+                        Icon = new SymbolIcon(Symbol.Account),
+                        Tag = item.ChildID
+                    };
+                    Nav_RegList.MenuItems.Add(navigationViewItem);
                 }
             }
 
