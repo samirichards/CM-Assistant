@@ -11,7 +11,12 @@ namespace CM_Assistant_UWP.Classes.Utilities
 {
     class ChildAttendance
     {
-        //Used to open a session with the start time custom, but usually is the current time
+        /// <summary>
+        /// Used to open a session with the start time custom, advised to use the current time
+        /// </summary>
+        /// <param name="_ChildID">ID of the child a new session is to be opened with</param>
+        /// <param name="time">The start time of the session</param>
+        /// <returns></returns>
         public static int SetChildPresent(int _ChildID, DateTimeOffset time)
         {
             Windows.Storage.StorageFolder localFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
@@ -34,7 +39,12 @@ namespace CM_Assistant_UWP.Classes.Utilities
             //Return ID of session
         }
 
-        //Used to close a session at a custom time, usually the current time but it can be different
+        /// <summary>
+        /// Used to close a session at a custom time, although it is adivsed to just use the current time
+        /// </summary>
+        /// <param name="_ChildID">ID of the child whos session is open</param>
+        /// <param name="time">The time which the session end should have assigned to it</param>
+        /// <returns></returns>
         public static bool SetChildLeft(int _ChildID, DateTimeOffset time)
         {
             SQLiteConnection conn = Database.GetConnection();
@@ -58,7 +68,10 @@ namespace CM_Assistant_UWP.Classes.Utilities
             }
         }
 
-        //Used as a last resort when you want a particular session closed by ID
+        /// <summary>
+        /// Used as a last resort when you want a particular session closed by ID
+        /// </summary>
+        /// <param name="SessionID">ID of session to be closed</param>
         public static void TerminateSession(int SessionID)
         {
             Windows.Storage.StorageFolder localFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
@@ -71,6 +84,10 @@ namespace CM_Assistant_UWP.Classes.Utilities
             //Record the amount earned after closing the session
         }
 
+        /// <summary>
+        /// Creates or updates the income transaction for the given session
+        /// </summary>
+        /// <param name="SessionID">ID of the session to have the transaction generated/updated</param>
         public static void RecordSession(int SessionID)
         {
             double IncomeAmount;

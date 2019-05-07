@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
+using CM_Assistant_UWP.Classes.Models;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -59,6 +60,11 @@ namespace CM_Assistant_UWP.Pages
                         quickAccess.Icon = Classes.Utilities.ImageManipulation.ImageFromByteArray(child.Photo);
                     }
 
+                    if (conn.Table<Session>().Where(a=> a.ChildID == child.ID && a.SessionOpen == true).Count() > 0)
+                    {
+                        quickAccess.SessionLength = "In session since: " + conn.Table<Session>().Where(a => a.ChildID == child.ID && a.SessionOpen == true).Single().Start.Value.ToLocalTime().ToString("HH:mm");
+                    }
+
                     childQuickAccesses.Add(quickAccess);
                     ChildrenPresent = true;
                 }
@@ -80,6 +86,7 @@ namespace CM_Assistant_UWP.Pages
         {
             ExitStoryboard.Begin();
             ExitStoryboard.Completed += ExitStoryboard_Completed;
+            RefreshChildList();
         }
 
         private void ExitStoryboard_Completed(object sender, object e)

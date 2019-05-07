@@ -14,6 +14,7 @@ namespace CM_Assistant_UWP.Classes.Viewmodels
         public string Name { get; set; }
         public ImageSource Icon { get; set; }
         public int ChildID { get; set; }
+        public string SessionLength { get; set; }
 
         public ChildQuickAccess()
         {

@@ -18,6 +18,13 @@
                 </Ellipse.Fill>
             </Ellipse>
             <TextBlock FontWeight="Bold" FontSize="24" x:Name="Txt_Name" Text="{Binding Name}" HorizontalAlignment="Center"/>
+            <TextBlock FontSize="24" FontWeight="Bold" Margin="8" x:Name="Txt_SessionStartTime" HorizontalAlignment="Center"/>
+            <TextBlock FontWeight="Bold" FontSize="24" Margin="8" x:Name="Txt_SessionTime" HorizontalAlignment="Center"/>
+            <TextBlock FontWeight="Bold" FontSize="24" Margin="8" x:Name="Txt_SessionIncome" HorizontalAlignment="Center"/>
+            <Button x:Name="Btn_SignInOrOut" Click="Btn_SignInOrOut_Click" Content="Sign in" Tag="SignIn" Margin="16" HorizontalAlignment="Right" FontSize="24"/>
+
+
+
         </StackPanel>
     </Grid>
 </Page>

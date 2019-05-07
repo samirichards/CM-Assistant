@@ -26,13 +26,14 @@
             <GridView Padding="0,72,0,0" Grid.Column="1" ItemClick="GrdView_Test_ItemClick" HorizontalAlignment="Center" IsItemClickEnabled="True" x:Name="GrdView_Test">
                 <GridView.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Width="150" Height="150" x:Name="Stk_ChildPanel" Orientation="Vertical" Background="{StaticResource SystemControlBackgroundChromeMediumLowBrush}">
+                        <StackPanel Width="150" Height="160" x:Name="Stk_ChildPanel" Orientation="Vertical" Background="{StaticResource SystemControlBackgroundChromeMediumLowBrush}">
                             <Ellipse Margin="8" Width="100" Height="100">
                                 <Ellipse.Fill>
                                     <ImageBrush Stretch="UniformToFill" x:Name="Img_Source" ImageSource="{Binding Icon}"/>
                                 </Ellipse.Fill>
                             </Ellipse>
-                            <TextBlock Margin="8,0,8,8" HorizontalAlignment="Center" VerticalAlignment="Bottom" Text="{Binding Name}"/>
+                            <TextBlock Margin="8,0,8,4" HorizontalAlignment="Center" VerticalAlignment="Bottom" Text="{Binding Name}"/>
+                            <TextBlock Margin="4,0,0,4" FontSize="10" FontWeight="Light" HorizontalAlignment="Center" VerticalAlignment="Bottom" Text="{Binding SessionLength}"/>
                         </StackPanel>
                     </DataTemplate>
                 </GridView.ItemTemplate>
