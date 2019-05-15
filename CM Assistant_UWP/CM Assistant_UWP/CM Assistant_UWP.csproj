@@ -179,6 +179,12 @@
     <Compile Include="Pages\Proceeds.xaml.cs">
       <DependentUpon>Proceeds.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\ProceedsPages\EditProceed.xaml.cs">
+      <DependentUpon>EditProceed.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ProceedsPages\Proceeds.xaml.cs">
+      <DependentUpon>Proceeds.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\ProceedsPages\ProjectionsPage.xaml.cs">
       <DependentUpon>ProjectionsPage.xaml</DependentUpon>
     </Compile>
@@ -271,6 +277,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\Proceeds.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ProceedsPages\EditProceed.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ProceedsPages\Proceeds.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

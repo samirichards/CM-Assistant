@@ -4,8 +4,8 @@
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:noNamespaceSchemaLocation="BracketsSchema.xsd">
   <TaxYear>
-    <StartDate>2019-04-06</StartDate>
-    <EndDate>2020-04-05</EndDate>
+    <StartDate>2018-04-06</StartDate>
+    <EndDate>2019-04-05</EndDate>
     <AdditionalRateMinIncome>150001</AdditionalRateMinIncome>
     <AdditionalRateTaxRate>0.55</AdditionalRateTaxRate>
     <Bracket>

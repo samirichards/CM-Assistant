@@ -8,7 +8,12 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid Margin="0,72,0,0">
-        <TextBlock Text="Proceeds Page"/>
-    </Grid>
+    <NavigationView Margin="0,72,0,0" IsBackEnabled="False" IsBackButtonVisible="Collapsed" x:Name="Nav_Proceeds" IsSettingsVisible="False" ItemInvoked="Nav_Proceeds_ItemInvoked" SelectionChanged="Nav_Proceeds_SelectionChanged">
+        <NavigationView.MenuItems>
+            <NavigationViewItem x:Name="NavItem_Proceeds" Content="Proceeds" Tag="Proceeds"/>
+            <NavigationViewItem x:Name="NavItem_Projections" Content="Projections" Tag="Projections"/>
+            <NavigationViewItem x:Name="NavItem_Taxes" Content="Taxes" Tag="Taxes"/>
+        </NavigationView.MenuItems>
+        <Frame x:Name="Frm_Proceeds"/>
+    </NavigationView>
 </Page>
